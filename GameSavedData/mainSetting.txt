@@ -1,0 +1,8 @@
+{
+  "bgm": 0,
+  "sfx": 0,
+  "coins": 41080.0602983555,
+  "clickUpCount": 174,
+  "farmUpCount": 60,
+  "mineUpCount": 3
+}

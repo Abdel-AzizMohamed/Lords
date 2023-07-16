@@ -1,0 +1,124 @@
+############################ UI BLUEPRINTS ############################
+############## Rect BLUEPRINT ##############
+"Name": {
+    "group": "Group Name",
+    "size": [width, height], ## grid value
+    "pos": [x, y], ## grid balue
+    "grab": "grab point", ## ex: center, midbottom, etc..
+    "attObj": "attatched object", ## ex: player, bullet, etc..
+    "frame": "frame name", ## to move along the frame
+    "active_color": "hex color",
+    "border_color": "hex color",
+    "border_width": size,
+    "font": "font name from main setting",
+    "text": "text to display",
+    "text_color": "hex color",
+    "text_align": "text align", ## left, center, etc..
+    "layer":, layer starts from 1 to max_layering ## value defined in main setting
+    "opcity": "given rect opacity"
+}
+
+############## Button BLUEPRINT ##############
+"BT_Name": {
+    "group": "Group Name",
+    "size": [width, height], ## grid value
+    "pos": [x, y], ## grid balue
+    "grab": "grab point", ## ex: center, midbottom, etc..
+    "attObj": "attatched object", ## ex: player, bullet, etc..
+    "frame": "frame name", ## to move along the frame
+    "active_color": "hex color",
+    "base_color": "#hex color",
+    "hover_color": "hex color",
+    "select_color": "hex color",
+    "border_color": "hex color",
+    "border_width": size,
+    "font": "font name from main setting",
+    "text": "text to display",
+    "text_color": "hex color",
+    "text_align": "text align", ## left, center, etc..
+    "disabled": "button state", ## takes 2 values True or False
+    "layer": layer starts from 1 to max_layering ## value defined in main setting
+}
+
+############## Frame BLUEPRINT ##############
+"FR_Name": {
+    "group": "name",
+    "size": [width, height], ## grid value
+    "pos": [x, y], ## grid balue
+    "grab": "grab point", ## ex: center, midbottom, etc..
+    "attObj": "attatched object", ## ex: player, bullet, etc..
+    "frame": "frame name", ## to move along the frame
+    "active_color": "hex color",
+    "border_color": "hex color",
+    "border_width": size,
+    "font": "font name from main setting",
+    "text": "text to display",
+    "text_color": "hex color",
+    "text_align": "text align", ## left, center, etc..
+    "layer": layer starts from 1 to max_layering ## value defined in main setting
+}
+
+############## Slider BLUEPRINT ##############
+"SL_Name": {
+    "group": "name",
+    "size": width, ## grid value
+    "pos": [x, y], ## grid balue
+    "grab": "grab point", ## ex: center, midbottom, etc..
+    "attObj": "attatched object", ## ex: player, bullet, etc..
+    "frame": "frame name", ## to move along the frame
+    "active_color": "hex color",
+    "border_color": "hex color",
+    "border_width": size,
+    "font": "font name from main setting",
+    "text": "text to display",
+    "text_color": "hex color",
+    "text_align": "text align", ## left, center, etc..
+    "bar_color": "hex color",
+    "bar_fill_color": "hex color",
+    "handle_color": "hex color",
+    "disabled": "button state", ## takes 2 values True or False
+    "layer": layer starts from 1 to max_layering ## value defined in main setting
+},
+
+############## Image BLUEPRINT ##############
+"IMG_Name": {
+    "group": "name",
+    "url": "path to the given image",
+    "size": width, ## grid value
+    "pos": [x, y], ## grid balue
+    "grab": "grab point", ## ex: center, midbottom, etc..
+    "attObj": "attatched object", ## ex: player, bullet, etc..
+    "frame": "frame name", ## to move along the frame
+    "active_color": "hex color",
+    "border_color": "hex color",
+    "border_width": size,
+    "font": "font name from main setting",
+    "text": "text to display",
+    "text_color": "hex color",
+    "text_align": "text align", ## left, center, etc..
+    "layer": layer starts from 1 to max_layering ## value defined in main setting
+}
+############################ OTHER BLUE PRINTS ############################
+############## Map Data BLUEPRINT ##############
+"Name": {
+    "group": "name",
+    "wall_list": "takes a list with 0, 1, name
+    // 0 indactes a wall
+    // 1 indactes a ground
+    // name indacates npc
+    // ex: [[1, 1, 1, 0, "alex", 0]]
+    // the list shoud match the map grid size
+    // ex for a map grid 2x2: [[1, 0]
+                                [0, 1]]
+}
+
+############## Game Chat BLUEPRINT ##############
+"Name": {
+    "text": {
+        "chat1": "takes a list of all chats"
+        // this is the chat dailog like in rpg games
+        // ex: ["hello", "my name is aziz", "i hope ..."]
+        "chat1_replay": "the same as chat"
+        // this is the replay if the player repeat the chat
+    }
+}
