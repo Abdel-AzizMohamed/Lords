@@ -70,11 +70,11 @@ def globalEvents(event):
 def startEvents(event, data):
     global game_state
 
-    if new_precnt:
-        if new_precnt[0] == "bgm":
+    if data:
+        if data[0] == "bgm":
             main_json["bgm"] = data[1]
             pygame.mixer.music.set_volume(data[1])
-        if new_precnt[0] == "sfx":
+        if data[0] == "sfx":
             main_json["sfx"] = data[1]
             for item in sounds_list:
                 item.sound.set_volume(data[1])

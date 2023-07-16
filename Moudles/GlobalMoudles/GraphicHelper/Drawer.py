@@ -72,39 +72,21 @@ def readUiFile(ui_data):
             size = data["size"]
         pos = (data["pos"][0], data["pos"][1])
 
-        if data["attObj"]:
-            element.obj = data["attObj"]
-
         if name[:2] == "BT":
             element = PyButton(data["group"], name[2:], size, pos, data["grab"], data["frame"])
-            element.base_color = data["base_color"]
-            element.hover_color = data["hover_color"]
-            element.select_color = data["select_color"]
-            element.disabled = data["disabled"]
         elif name[:2] == "SL":
             element = PySlider(data["group"], name[2:], size, pos, data["grab"], data["frame"])
-            element.bar_color = data["bar_color"]
-            element.bar_fill_color = data["bar_fill_color"]
-            element.handle_color = data["handle_color"]
-            element.disabled = data["disabled"]
         elif name[:2] == "FR":
             element = PyFrame(data["group"], name[2:], size, pos, data["grab"])
         elif name[:3] == "IMG":
             element = PyImage(data["group"], name[3:], data["url"], pos, data["grab"], data["frame"], data["size"])
         elif name[:3] == "IBT":
             element = PyIButton(data["group"], name[3:], data["urls"], pos, data["grab"], data["frame"], data["size"])
-            element.disabled = data["disabled"]
         else:
             element = PyRect(data["group"], name, size, pos, data["grab"], data["frame"])
-            element.opacity = data["opacity"]
 
-        if data["active_color"]:
-            element.active_color = data["active_color"]
-
-        element.border_color = data["border_color"]
-        element.border_width = data["border_width"]
-        element.layer = data["layer"]
-        element.text_align = data["text_align"]
+        for attr_name, attr_data in data.items():
+            setattr(element, attr_name, attr_data)
 
         element.updateText(fonts_dict[data["font"]], data["text"], data["text_color"], data["text_align"])
         element.setBorder(element.border_width, element.border_color)
