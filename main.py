@@ -50,47 +50,51 @@ pygame.time.set_timer(AUTOSAVE, 1000)
 
 ################### Ui small edits ###################
 ################### Game Events ###################
-def checkEvents():
-    global game_state, body_count, delete_count
-    ############ Global Events ############
-    ## basic events ##
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+def globalEvents(event):
+    if event.type == pygame.QUIT:
+        pygame.quit()
+        sys.exit()
+    if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_ESCAPE:
             pygame.quit()
             sys.exit()
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_ESCAPE:
-                pygame.quit()
-                sys.exit()
-        if event.type == AUTOSAVE:
-            dataHandler.SaveJson("GameSavedData\\mainSetting.txt", main_json)
+    if event.type == AUTOSAVE:
+        dataHandler.SaveJson("GameSavedData\\mainSetting.txt", main_json)
 
-        ## Ui events ##
-        UiEvents.checkButtonState(event, Drawer.draw_dict, sounds_list)
-        new_precnt = UiEvents.sliderGrab(event, Drawer.draw_dict)
+    ## Ui events ##
+    UiEvents.checkButtonState(event, Drawer.draw_dict, sounds_list)
+    new_precnt = UiEvents.sliderGrab(event, Drawer.draw_dict)
 
-        if new_precnt:
-            if new_precnt[0] == "bgm":
-                main_json["bgm"] = new_precnt[1]
-                pygame.mixer.music.set_volume(new_precnt[1])
-            if new_precnt[0] == "sfx":
-                main_json["sfx"] = new_precnt[1]
-                for item in sounds_list:
-                    item.sound.set_volume(new_precnt[1])
+    return new_precnt
 
-        # if event.type == pygame.MOUSEBUTTONDOWN:
-        #     if Drawer.draw_dict["gameplay"]["IMGcoin"].rect.collidepoint(pygame.mouse.get_pos()):
-        #         main_json["coins"] += 1
-        #     if Drawer.draw_dict["gameplay"]["IBTsetting"].rect.collidepoint(pygame.mouse.get_pos()):
-        #         Drawer.excluded_dict["game_list"]["settingMenu"] *= -1
-        #         Drawer.excluded_dict["game_list"]["upgradeMenu"] = -1
-        #     if Drawer.draw_dict["gameplay"]["IBTupgrade"].rect.collidepoint(pygame.mouse.get_pos()):
-        #         Drawer.excluded_dict["game_list"]["upgradeMenu"] *= -1
-        #         Drawer.excluded_dict["game_list"]["settingMenu"] = -1
-        #     if Drawer.draw_dict["gameplay"]["IBTexit"].rect.collidepoint(pygame.mouse.get_pos()):
-        #         pygame.quit()
-        #         sys.exit()
+def startEvents(event, data):
+    global game_state
 
+    if new_precnt:
+        if new_precnt[0] == "bgm":
+            main_json["bgm"] = data[1]
+            pygame.mixer.music.set_volume(data[1])
+        if new_precnt[0] == "sfx":
+            main_json["sfx"] = data[1]
+            for item in sounds_list:
+                item.sound.set_volume(data[1])
+
+def gameEvents(event):
+    pass
+
+def pauseEvents(event):
+    pass
+
+
+def checkEvents():
+    for event in pygame.event.get():
+        data = globalEvents(event)
+        if game_state == 0:
+            startEvents(event, data)
+        if game_state == 1:
+            gameEvents(event)
+        if game_state == 2:
+            pauseEvents(event)
 
 def gameStart():
     pass

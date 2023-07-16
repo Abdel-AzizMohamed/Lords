@@ -96,7 +96,7 @@ class PyProgressBar(PyRect):
 
     def setSlider(self, new_precent):
         self.precent = new_precent
-        self.bar_fill_rect.x = self.start_pos + (self.rect.width * self.precent)
+        self.bar_fill_rect.width = self.handle_rect.x - self.start_pos
 
 class PySlider(PyProgressBar):
     def __init__(self, group, name, width, pos, grab="", frame=""):

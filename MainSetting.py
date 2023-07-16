@@ -25,7 +25,7 @@ pygame.display.set_caption("PyDating")
 # pygame.display.toggle_fullscreen()
 # pygame.mouse.set_visible(False)
 
-game_state = True
+game_state = 0
 sounds_list = []
 
 ################### Game Fonts ###################
