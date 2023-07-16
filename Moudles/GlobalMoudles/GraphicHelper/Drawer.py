@@ -44,8 +44,10 @@ def drawGroup():
 
             screen.blit(item.ren_text, item.rect_text)
 
-def createGroup(group):
-    draw_dict.update({group : {}})
+def createGroup(name, group):
+    if name not in draw_dict:
+        draw_dict.update({name : {}})
+        excluded_dict[group].update({name : 1})
 
 def drawRectPattern():
     for row in range(20):
@@ -64,8 +66,10 @@ def randomPattern(count, randint, choice, color_list):
         pat_obj.active_color = choice(color_list)
         pat_obj.addPadding(-25, -25)
 
-def readUiFile(ui_data):
+def readUiFile(ui_data, ui_group):
     for name, data in ui_data.items():
+        createGroup(data["group"], ui_group)
+
         if type(data["size"]) == list:
             size = (data["size"][0], data["size"][1])
         else:

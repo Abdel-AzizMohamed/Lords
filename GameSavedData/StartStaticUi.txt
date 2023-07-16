@@ -1,3 +1,19 @@
 {
-
+    "background": {
+        "group": "mainMenu",
+        "size": [20, 20],
+        "pos": [0, 0],
+        "grab": "",
+        "attObj": "",
+        "frame": "",
+        "active_color": "#333333",
+        "border_color": "#FFFFFF",
+        "border_width": 0,
+        "font": "sm_mid_font",
+        "text": "",
+        "text_color": "#FFFFFF",
+        "text_align": "center",
+        "layer": 1,
+        "opacity": 1
+    }
 }

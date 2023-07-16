@@ -29,8 +29,8 @@ main_json = dataHandler.readJson("GameSavedData\\mainSetting.txt")
 start_ui_json = dataHandler.readJson("GameSavedData\\StartStaticUi.txt")
 game_ui_json = dataHandler.readJson("GameSavedData\\GameStaticUi.txt")
 
-Drawer.readUiFile(start_ui_json)
-Drawer.readUiFile(game_ui_json)
+Drawer.readUiFile(start_ui_json, "start_list")
+Drawer.readUiFile(game_ui_json, "game_list")
 
 music = mixerControl.Music("Sounds\\bgm", "Ultrakill.mp3", main_json["bgm"])
 pygame.mixer.music.play(-1)

@@ -21,7 +21,7 @@ moniter_width, moniter_height = screen_info.current_w, screen_info.current_h
 
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode((screen_width, screen_height))
-pygame.display.set_caption("PyDating")
+pygame.display.set_caption("Lords")
 # pygame.display.toggle_fullscreen()
 # pygame.mouse.set_visible(False)
 

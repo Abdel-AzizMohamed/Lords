@@ -8,7 +8,6 @@ class PyRect(UiDesgin):
         self.name = f"{uiPrefix}{name}"
         self.group = group
 
-        self.checkGroup()
         self.checkInc()
 
         self.attObj = None
@@ -41,12 +40,6 @@ class PyRect(UiDesgin):
                 inc_dict.update({self.group : 0})
             self.name = f"{inc_dict[self.group]}{self.name}"
             inc_dict[self.group] += 1
-
-    def checkGroup(self):
-        try:
-            draw_dict[self.group]
-        except KeyError:
-            draw_dict.update({self.group : {}})
 
     def setFrame(self, frame):
         if frame == "":
