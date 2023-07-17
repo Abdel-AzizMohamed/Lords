@@ -61,16 +61,16 @@ class UiDesgin():
 
     def setGeo(self, size, pos, grab="", create=True):
         if self.frame == None:
-            base_x = screen_width / ceil_count
-            base_y = screen_height / ceil_count
+            base_x = screen_width / y_ceil
+            base_y = screen_height / x_ceil
         else:
-            base_x = self.frame.rect.width / ceil_count
-            base_y = self.frame.rect.height / ceil_count
+            base_x = self.frame.rect.width / x_ceil
+            base_y = self.frame.rect.height / y_ceil
 
-        if size[0] > ceil_count or size[1] > ceil_count:
-            print(f"You have inerted a size bigger than {ceil_count}")
-        if pos[0] > ceil_count or pos[1] > ceil_count:
-            print(f"You have inerted a position bigger than {ceil_count}")
+        if size[0] > y_ceil or size[1] > x_ceil:
+            print(f"You have inerted a size bigger than {x_ceil}")
+        if pos[0] > y_ceil or pos[1] > x_ceil:
+            print(f"You have inerted a position bigger than {x_ceil}")
 
         size_x = round(size[0] * base_x)
         size_y = round(size[1] * base_y)

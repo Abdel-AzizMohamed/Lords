@@ -88,7 +88,6 @@
     "type": "IMG",
     "group": "name",
     "url": "path to the given image",
-    "size": width, ## grid value
     "pos": [x, y], ## grid balue
     "grab": "grab point", ## ex: center, midbottom, etc..
     "attObj": "attatched object", ## ex: player, bullet, etc..
@@ -106,7 +105,6 @@
     "type": "IMG",
     "group": "name",
     "urls": ["list of 4 images, normal, hover, select, disabled, in this order"],
-    "size": width, ## grid value
     "pos": [x, y], ## grid balue
     "grab": "grab point", ## ex: center, midbottom, etc..
     "attObj": "attatched object", ## ex: player, bullet, etc..
