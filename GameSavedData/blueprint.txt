@@ -1,6 +1,7 @@
 ############################ UI BLUEPRINTS ############################
 ############## Rect BLUEPRINT ##############
 "Name": {
+    "type": "",
     "group": "Group Name",
     "size": [width, height], ## grid value
     "pos": [x, y], ## grid balue
@@ -20,6 +21,7 @@
 
 ############## Button BLUEPRINT ##############
 "BT_Name": {
+    "type": "BT",
     "group": "Group Name",
     "size": [width, height], ## grid value
     "pos": [x, y], ## grid balue

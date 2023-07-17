@@ -29,18 +29,20 @@ def drawGroup():
         for item in layer:
             if item.border_width > 0:
                 pygame.draw.rect(screen, item.border_color, item.border_rect)
-            if item.name[:2] == "GR":
+            if item.type == "GR":
                 continue
-            elif item.name[:2] == "SL":
+            elif item.type == "SL":
                 pygame.draw.rect(screen, item.bar_color, item.rect)
                 pygame.draw.rect(screen, item.bar_fill_color, item.bar_fill_rect)
                 pygame.draw.rect(screen, item.handle_color, item.handle_rect)
-            elif item.name[:2] == "CI":
+            elif item.type == "CI":
                 pygame.draw.circle(screen, item.active_color, item.rect.center, item.radius)
-            elif item.name[:3] == "IMG":
+            elif item.type == "IMG":
                 screen.blit(item.image, item.rect)
-            elif item.name[:3] == "IBT":
+            elif item.type == "IBT":
                 screen.blit(item.button_state, item.rect)
+            elif item.type == "BT":
+                pygame.draw.rect(screen, item.active_color, item.rect)
             else:
                 surface = pygame.Surface(item.rect.size)
                 pygame.draw.rect(surface, item.active_color, item.rect)
@@ -81,16 +83,16 @@ def readUiFile(ui_data, ui_group):
             size = data["size"]
         pos = (data["pos"][0], data["pos"][1])
 
-        if name[:2] == "BT":
-            element = PyButton(data["group"], name[2:], size, pos, data["grab"], data["frame"])
-        elif name[:2] == "SL":
-            element = PySlider(data["group"], name[2:], size, pos, data["grab"], data["frame"])
-        elif name[:2] == "FR":
-            element = PyFrame(data["group"], name[2:], size, pos, data["grab"])
-        elif name[:3] == "IMG":
-            element = PyImage(data["group"], name[3:], data["url"], pos, data["grab"], data["frame"], data["size"])
-        elif name[:3] == "IBT":
-            element = PyIButton(data["group"], name[3:], data["urls"], pos, data["grab"], data["frame"], data["size"])
+        if data["type"] == "BT":
+            element = PyButton(data["group"], name, size, pos, data["grab"], data["frame"])
+        elif data["type"] == "SL":
+            element = PySlider(data["group"], name, size, pos, data["grab"], data["frame"])
+        elif data["type"] == "FR":
+            element = PyFrame(data["group"], name, size, pos, data["grab"])
+        elif data["type"] == "IMG":
+            element = PyImage(data["group"], name, data["url"], pos, data["grab"], data["frame"], data["size"])
+        elif data["type"] == "IBT":
+            element = PyIButton(data["group"], name, data["urls"], pos, data["grab"], data["frame"], data["size"])
         else:
             element = PyRect(data["group"], name, size, pos, data["grab"], data["frame"])
 

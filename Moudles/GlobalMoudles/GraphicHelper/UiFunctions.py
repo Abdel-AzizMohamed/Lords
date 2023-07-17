@@ -138,7 +138,7 @@ class UiDesgin():
             self.text_margin_y += margin_y
             self.rect_text.y += margin_y
         else:
-            if self.name[:2] == "SL":
+            if self.name.type == "SL":
                 self.rect.x += margin_x
                 self.rect.y += margin_y
 

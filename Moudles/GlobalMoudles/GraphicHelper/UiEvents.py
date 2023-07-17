@@ -10,7 +10,7 @@ def sliderGrab(event, ui_dict):
 
     for group in ui_dict.keys():
         for name, item in ui_dict[group].items():
-            if name[0:2] == "SL":
+            if item.type == "SL":
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if not grabed_slide and item.handle_rect.collidepoint(pygame.mouse.get_pos()):
                         grabed_slide = True
@@ -39,8 +39,8 @@ def sliderMove():
 
 def checkButtonState(event, ui_dict, sounds_list):
     for group in ui_dict.keys():
-        for name, item in ui_dict[group].items():
-            if name[0:2] == "BT":
+        for item in ui_dict[group].values():
+            if item.type == "BT":
                 if item.disabled:
                     item.active_color = item.disabled_color
                     if event.type == pygame.MOUSEBUTTONDOWN:
@@ -55,7 +55,7 @@ def checkButtonState(event, ui_dict, sounds_list):
                         item.active_color = item.hover_color
                 else:
                     item.active_color = item.base_color
-            elif name[0:3] == "IBT":
+            elif item.type == "IBT":
                 if item.disabled:
                     item.button_state = item.disabled_image
 

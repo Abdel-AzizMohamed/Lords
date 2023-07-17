@@ -5,7 +5,8 @@ from UiFunctions import *
 ####################################################################
 class PyRect(UiDesgin):
     def __init__(self, group, name, size, pos, grab="", uiPrefix="", frame=""):
-        self.name = f"{uiPrefix}{name}"
+        self.name = name
+        self.type = uiPrefix
         self.group = group
 
         self.checkInc()
