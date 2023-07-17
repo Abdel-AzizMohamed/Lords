@@ -49,6 +49,7 @@ pygame.time.set_timer(AUTOSAVE, 1000)
 
 
 ################### Ui small edits ###################
+Drawer.getElementByName("start").updateText(sm_mid_font, "uwu", "#FFFFFF", "center")
 ################### Game Events ###################
 def globalEvents(event):
     if event.type == pygame.QUIT:

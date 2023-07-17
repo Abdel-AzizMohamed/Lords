@@ -101,3 +101,9 @@ def readUiFile(ui_data, ui_group):
 
         element.updateText(fonts_dict[data["font"]], data["text"], data["text_color"], data["text_align"])
         element.setBorder(element.border_width, element.border_color)
+
+def getElementByName(name):
+    for group in draw_dict.values():
+        for key, element in group.items():
+            if key == name:
+                return element
