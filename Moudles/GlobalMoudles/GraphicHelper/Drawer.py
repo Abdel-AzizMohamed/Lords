@@ -3,24 +3,29 @@ from pygame import math
 from UiSprite import *
 
 ######################## Functions ##############################
-def drawGroup():
-    active_main_group = ""
-    layring_dict = {}
-    ## remove unwanted groups
+def excludedGroups():
     if excluded_dict["start_state"] == 1:
-        active_main_group = "start_list"
-    else:
-        active_main_group = "game_list"
+        return "start_list"
+    return "game_list"
+
+def getLayers(active_group):
+    layring_dict = {}
 
     for i in range(max_layer):
         layring_dict.update({f"layer{1 + i}": []})
 
-    for group, state in excluded_dict[active_main_group].items():
+    for group, state in excluded_dict[active_group].items():
         if state == 1:
             for item in draw_dict[group].values():
                 layring_dict[f"layer{item.layer}"].append(item)
 
-    for layer in layring_dict.values():
+    return layring_dict
+
+def drawGroup():
+    active_group = excludedGroups()
+    elements = getLayers(active_group)
+
+    for layer in elements.values():
         for item in layer:
             if item.border_width > 0:
                 pygame.draw.rect(screen, item.border_color, item.border_rect)
