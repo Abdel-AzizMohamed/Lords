@@ -6,6 +6,7 @@ from random import randint, choice
 ################### Paths ###################
 sys.path.append("Moudles\\GlobalMoudles")
 sys.path.append("Moudles\\GlobalMoudles\\GraphicHelper")
+sys.path.append("Moudles\\GlobalMoudles\\DevHelper")
 sys.path.append("Moudles\\OpatinalMoudles")
 sys.path.append("Moudles\\OnceMoudles")
 
@@ -17,6 +18,7 @@ import UiEvents
 import dataHandler
 import mixerControl
 
+import GridDisplay
 #### Opatinal Packges ####
 import timeControl
 
@@ -104,7 +106,7 @@ while True:
     checkEvents()
     if game_state:
         gameStart()
-
     Drawer.drawGroup()
+    GridDisplay.displayGrid(x_ceil, y_ceil, "#FFFFFF")
     pygame.display.update()
     clock.tick(60)
