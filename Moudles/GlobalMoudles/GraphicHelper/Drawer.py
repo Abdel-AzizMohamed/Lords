@@ -29,7 +29,9 @@ def drawGroup():
         for item in layer:
             if item.border_width > 0:
                 pygame.draw.rect(screen, item.border_color, item.border_rect)
-            if item.type == "GR":
+            if item.type == "BT":
+                pygame.draw.rect(screen, item.active_color, item.rect)
+            elif item.type == "GR":
                 continue
             elif item.type == "SL":
                 pygame.draw.rect(screen, item.bar_color, item.rect)
@@ -41,8 +43,10 @@ def drawGroup():
                 screen.blit(item.image, item.rect)
             elif item.type == "IBT":
                 screen.blit(item.button_state, item.rect)
-            elif item.type == "BT":
-                pygame.draw.rect(screen, item.active_color, item.rect)
+            elif item.type == "IPR":
+                screen.blit(item.fill_image, item.rect)
+                pygame.draw.rect(screen, item.base_bar_color, item.base_bar_rect)
+                screen.blit(item.bar_image, item.rect)
             else:
                 print(round(255 * item.opacity))
                 surface = pygame.Surface(item.rect.size)
@@ -94,6 +98,8 @@ def readUiFile(ui_data, ui_group):
             element = PyImage(data["group"], name, data["url"], pos, data["grab"], data["frame"], data["size"])
         elif data["type"] == "IBT":
             element = PyIButton(data["group"], name, data["urls"], pos, data["grab"], data["frame"], data["size"])
+        elif data["type"] == "IPR":
+            element = PyIProgress(data["group"], name, data["urls"], pos, data["grab"], data["frame"], data["size"])
         else:
             element = PyRect(data["group"], name, size, pos, data["grab"], data["frame"])
 

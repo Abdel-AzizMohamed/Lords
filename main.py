@@ -57,6 +57,11 @@ Drawer.getElementByName("mapsBt").addMargin(-25, -25)
 Drawer.getElementByName("bossesBt").addMargin(-25, -25)
 Drawer.getElementByName("settingBt").addMargin(-25, -25)
 Drawer.getElementByName("exitBt").addMargin(-25, -25)
+Drawer.getElementByName("healthBar").setSlider(.5)
+Drawer.getElementByName("xpBar").setSlider(.5)
+Drawer.getElementByName("monsterHphBar").bar_image = pygame.transform.flip(Drawer.getElementByName("monsterHphBar").bar_image, False, True)
+Drawer.getElementByName("monsterHphBar").fill_image = pygame.transform.flip(Drawer.getElementByName("monsterHphBar").fill_image, False, True)
+Drawer.getElementByName("monsterHphBar").setSlider(.5)
 ################### Game Events ###################
 def globalEvents(event):
     if event.type == pygame.QUIT:
@@ -112,7 +117,7 @@ while True:
     if game_state:
         gameStart()
     Drawer.drawGroup()
-    GridDisplay.displayGrid(x_ceil, y_ceil)
+    # GridDisplay.displayGridfd(x_ceil, y_ceil)
     fpsDisplay.displayFps()
     pygame.display.update()
     clock.tick(60)
