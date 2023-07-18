@@ -62,6 +62,11 @@ Drawer.getElementByName("xpBar").setSlider(.5)
 Drawer.getElementByName("monsterHphBar").bar_image = pygame.transform.flip(Drawer.getElementByName("monsterHphBar").bar_image, False, True)
 Drawer.getElementByName("monsterHphBar").fill_image = pygame.transform.flip(Drawer.getElementByName("monsterHphBar").fill_image, False, True)
 Drawer.getElementByName("monsterHphBar").setSlider(.5)
+
+Drawer.excluded_dict["game_list"]["statsMenu"] = -1
+Drawer.excluded_dict["game_list"]["mapMenu"] = -1
+Drawer.excluded_dict["game_list"]["bossMenu"] = -1
+Drawer.excluded_dict["game_list"]["settingMenu"] = -1
 ################### Game Events ###################
 def globalEvents(event):
     if event.type == pygame.QUIT:
@@ -93,7 +98,30 @@ def startEvents(event, data):
                 item.sound.set_volume(data[1])
 
 def gameEvents(event):
-    pass
+    if event.type == pygame.MOUSEBUTTONUP:
+        if Drawer.getElementByName("statsBt").rect.collidepoint(pygame.mouse.get_pos()):
+            Drawer.excluded_dict["game_list"]["statsMenu"] *= -1
+            Drawer.excluded_dict["game_list"]["mapMenu"] = -1
+            Drawer.excluded_dict["game_list"]["bossMenu"] = -1
+            Drawer.excluded_dict["game_list"]["settingMenu"] = -1
+        elif Drawer.getElementByName("mapsBt").rect.collidepoint(pygame.mouse.get_pos()):
+            Drawer.excluded_dict["game_list"]["statsMenu"] = -1
+            Drawer.excluded_dict["game_list"]["mapMenu"] *= -1
+            Drawer.excluded_dict["game_list"]["bossMenu"] = -1
+            Drawer.excluded_dict["game_list"]["settingMenu"] = -1
+        elif Drawer.getElementByName("bossesBt").rect.collidepoint(pygame.mouse.get_pos()):
+            Drawer.excluded_dict["game_list"]["statsMenu"] = -1
+            Drawer.excluded_dict["game_list"]["mapMenu"] = -1
+            Drawer.excluded_dict["game_list"]["bossMenu"] *= -1
+            Drawer.excluded_dict["game_list"]["settingMenu"] = -1
+        elif Drawer.getElementByName("settingBt").rect.collidepoint(pygame.mouse.get_pos()):
+            Drawer.excluded_dict["game_list"]["statsMenu"] = -1
+            Drawer.excluded_dict["game_list"]["mapMenu"] = -1
+            Drawer.excluded_dict["game_list"]["bossMenu"] = -1
+            Drawer.excluded_dict["game_list"]["settingMenu"] *= -1
+        elif Drawer.getElementByName("exitBt").rect.collidepoint(pygame.mouse.get_pos()):
+            pygame.quit()
+            sys.exit()
 
 def pauseEvents(event):
     pass

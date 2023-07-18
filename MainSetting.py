@@ -24,7 +24,7 @@ pygame.display.set_caption("Lords")
 # pygame.display.toggle_fullscreen()
 # pygame.mouse.set_visible(False)
 
-game_state = 0
+game_state = 1
 sounds_list = []
 max_layer = 10
 map_width = 0
