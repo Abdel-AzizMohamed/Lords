@@ -19,6 +19,7 @@ import dataHandler
 import mixerControl
 
 import GridDisplay
+import fpsDisplay
 #### Opatinal Packges ####
 import timeControl
 
@@ -51,7 +52,11 @@ pygame.time.set_timer(AUTOSAVE, 1000)
 
 
 ################### Ui small edits ###################
-Drawer.getElementByName("start").updateText(sm_mid_font, "uwu", "#FFFFFF", "center")
+Drawer.getElementByName("statsBt").addMargin(-25, -25)
+Drawer.getElementByName("mapsBt").addMargin(-25, -25)
+Drawer.getElementByName("bossesBt").addMargin(-25, -25)
+Drawer.getElementByName("settingBt").addMargin(-25, -25)
+Drawer.getElementByName("exitBt").addMargin(-25, -25)
 ################### Game Events ###################
 def globalEvents(event):
     if event.type == pygame.QUIT:
@@ -107,6 +112,7 @@ while True:
     if game_state:
         gameStart()
     Drawer.drawGroup()
-    GridDisplay.displayGrid(x_ceil, y_ceil, "#FFFFFF")
+    GridDisplay.displayGrid(x_ceil, y_ceil)
+    fpsDisplay.displayFps()
     pygame.display.update()
     clock.tick(60)

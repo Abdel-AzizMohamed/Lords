@@ -16,7 +16,7 @@ class PyIButton(PyRect):
     def __init__(self, group, name, urls, pos, grab="", frame="", scale=1):
         super().__init__(group, name, (0, 0), pos, grab, "IBT", frame)
 
-        self.image = pygame.image.load(url[0])
+        self.image = pygame.image.load(urls[0])
         self.hover_image = pygame.image.load(urls[1])
         self.select_image = pygame.image.load(urls[2])
         self.disabled_image = pygame.image.load(urls[3])

@@ -4,8 +4,8 @@ from MainSetting import *
 
 draw_dict = {}
 inc_dict = {}
-excluded_dict = {"start_state": 1, "start_list": {},
-                "game_state": -1, "game_list": {}}
+excluded_dict = {"start_state": -1, "start_list": {},
+                "game_state": 1, "game_list": {}}
 
 class UiDesgin():
     ######################## Other Functions ##############################
@@ -138,7 +138,7 @@ class UiDesgin():
             self.text_margin_y += margin_y
             self.rect_text.y += margin_y
         else:
-            if self.name.type == "SL":
+            if self.type == "SL":
                 self.rect.x += margin_x
                 self.rect.y += margin_y
 

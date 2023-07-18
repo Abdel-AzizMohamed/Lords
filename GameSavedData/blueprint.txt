@@ -16,7 +16,7 @@
     "text_color": "hex color",
     "text_align": "text align", ## left, center, etc..
     "layer":, layer starts from 1 to max_layering ## value defined in main setting
-    "opcity": "given rect opacity"
+    "opacity": "given rect opacity"
 }
 
 ############## Button BLUEPRINT ##############
@@ -88,6 +88,7 @@
     "type": "IMG",
     "group": "name",
     "url": "path to the given image",
+    "size": scale of the image default = 1,
     "pos": [x, y], ## grid balue
     "grab": "grab point", ## ex: center, midbottom, etc..
     "attObj": "attatched object", ## ex: player, bullet, etc..
@@ -102,9 +103,10 @@
 }
 ############## Image Button BLUEPRINT ##############
 "Name": {
-    "type": "IMG",
+    "type": "IBT",
     "group": "name",
     "urls": ["list of 4 images, normal, hover, select, disabled, in this order"],
+    "size": 1,
     "pos": [x, y], ## grid balue
     "grab": "grab point", ## ex: center, midbottom, etc..
     "attObj": "attatched object", ## ex: player, bullet, etc..

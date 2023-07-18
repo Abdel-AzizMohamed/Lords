@@ -44,6 +44,7 @@ def drawGroup():
             elif item.type == "BT":
                 pygame.draw.rect(screen, item.active_color, item.rect)
             else:
+                print(round(255 * item.opacity))
                 surface = pygame.Surface(item.rect.size)
                 pygame.draw.rect(surface, item.active_color, item.rect)
                 surface.set_alpha(round(255 * item.opacity))

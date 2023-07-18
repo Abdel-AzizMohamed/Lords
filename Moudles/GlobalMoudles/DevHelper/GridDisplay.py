@@ -3,7 +3,7 @@ from MainSetting import *
 
 
 
-def displayGrid(rows, columns, color):
+def displayGrid(rows, columns, color="#FFFFFF"):
     base_x = screen_width / y_ceil
     base_y = screen_height / x_ceil
 
