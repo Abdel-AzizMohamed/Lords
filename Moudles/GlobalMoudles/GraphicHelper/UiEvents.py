@@ -1,16 +1,20 @@
 import pygame
+from MainSetting import *
+
 
 ################### Varibales ###################
 grabed_slide = False
 slider_pos = 0
 current_item = None
 
+focus = None
+
 def sliderGrab(event, ui_dict):
     global grabed_slide, grabed_slide, current_item
 
     for group in ui_dict.keys():
         for name, item in ui_dict[group].items():
-            if item.type == "SL":
+            if item.type == "SL" or item.type == "ISL":
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if not grabed_slide and item.handle_rect.collidepoint(pygame.mouse.get_pos()):
                         grabed_slide = True
@@ -35,7 +39,7 @@ def sliderMove():
 
         current_item.setSlider(current_item.precent)
 
-        return [current_item.name[2:], current_item.precent]
+        return [current_item.name, current_item.precent]
 
 def checkButtonState(event, ui_dict, sounds_list):
     for group in ui_dict.keys():
@@ -68,3 +72,32 @@ def checkButtonState(event, ui_dict, sounds_list):
                         item.button_state = item.hover_image
                 else:
                     item.button_state = item.image
+
+def checkInput(event, ui_dict):
+    global focus
+
+    for group in ui_dict.keys():
+        for name, item in ui_dict[group].items():
+            if item.type == "IN" or item.type == "IIN":
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if item.rect.collidepoint(pygame.mouse.get_pos()):
+                        focus = item
+                    else:
+                        focus = None
+    if focus:
+        return inputInsert(event)
+
+    return None
+
+def inputInsert(event):
+    if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_BACKSPACE:
+            focus.text = focus.text[:-1]
+        elif event.key == pygame.K_RETURN:
+            return True
+        elif focus.rect_text.width >= focus.rect.width - 10:
+            return False
+        elif event.unicode.isalpha() or event.unicode.isdigit():
+            focus.text += event.unicode
+    focus.updateText(sm_mid_font, focus.text, focus.text_color, "left")
+    return False

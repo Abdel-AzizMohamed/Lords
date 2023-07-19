@@ -11,7 +11,7 @@ sys.path.append("Moudles\\OpatinalMoudles")
 sys.path.append("Moudles\\OnceMoudles")
 
 ################### My Packges ###################
-#### Importent Packges ####
+#### Importent Packges ####C
 import Drawer
 from MainSetting import *
 import UiEvents
@@ -37,8 +37,6 @@ Drawer.readUiFile(game_ui_json, "game_list")
 
 music = mixerControl.Music("Sounds\\bgm", "Ultrakill.mp3", main_json["bgm"])
 pygame.mixer.music.play(-1)
-# Drawer.draw_dict["settingMenu"]["SLbgm"].setSlider(main_json["bgm"])
-# Drawer.draw_dict["settingMenu"]["SLsfx"].setSlider(main_json["sfx"])
 
 hover_sound = mixerControl.Sound("Sounds\\sfx", "button_hover.mp3", main_json["sfx"])
 select_sound = mixerControl.Sound("Sounds\\sfx", "button_select.mp3", main_json["sfx"])
@@ -59,9 +57,11 @@ Drawer.getElementByName("settingBt").addMargin(-25, -25)
 Drawer.getElementByName("exitBt").addMargin(-25, -25)
 Drawer.getElementByName("healthBar").setSlider(.5)
 Drawer.getElementByName("xpBar").setSlider(.5)
-Drawer.getElementByName("monsterHphBar").bar_image = pygame.transform.flip(Drawer.getElementByName("monsterHphBar").bar_image, False, True)
-Drawer.getElementByName("monsterHphBar").fill_image = pygame.transform.flip(Drawer.getElementByName("monsterHphBar").fill_image, False, True)
-Drawer.getElementByName("monsterHphBar").setSlider(.5)
+Drawer.getElementByName("monsterHphBar").setSlider(1)
+Drawer.getElementByName("bgm").setSlider(main_json["bgm"])
+Drawer.getElementByName("bgm").addMargin(0, -40, "text")
+Drawer.getElementByName("sfx").setSlider(main_json["sfx"])
+Drawer.getElementByName("sfx").addMargin(0, -40, "text")
 
 Drawer.excluded_dict["game_list"]["statsMenu"] = -1
 Drawer.excluded_dict["game_list"]["mapMenu"] = -1
@@ -81,13 +81,15 @@ def globalEvents(event):
 
     ## Ui events ##
     UiEvents.checkButtonState(event, Drawer.draw_dict, sounds_list)
+    UiEvents.checkInput(event, Drawer.draw_dict)
     new_precnt = UiEvents.sliderGrab(event, Drawer.draw_dict)
 
     return new_precnt
 
-def startEvents(event, data):
-    global game_state
+def startEvents(event):
+    pass
 
+def gameEvents(event, data):
     if data:
         if data[0] == "bgm":
             main_json["bgm"] = data[1]
@@ -97,7 +99,6 @@ def startEvents(event, data):
             for item in sounds_list:
                 item.sound.set_volume(data[1])
 
-def gameEvents(event):
     if event.type == pygame.MOUSEBUTTONUP:
         if Drawer.getElementByName("statsBt").rect.collidepoint(pygame.mouse.get_pos()):
             Drawer.excluded_dict["game_list"]["statsMenu"] *= -1
@@ -122,6 +123,10 @@ def gameEvents(event):
         elif Drawer.getElementByName("exitBt").rect.collidepoint(pygame.mouse.get_pos()):
             pygame.quit()
             sys.exit()
+        elif Drawer.getElementByName("saveBt").rect.collidepoint(pygame.mouse.get_pos()):
+            dataHandler.SaveJson("GameSavedData\\mainSetting.txt", main_json)
+        elif Drawer.getElementByName("eraseBt").rect.collidepoint(pygame.mouse.get_pos()):
+            dataHandler.SaveJson("GameSavedData\\mainSetting.txt", main_json)
 
 def pauseEvents(event):
     pass
@@ -131,9 +136,9 @@ def checkEvents():
     for event in pygame.event.get():
         data = globalEvents(event)
         if game_state == 0:
-            startEvents(event, data)
+            startEvents(event)
         if game_state == 1:
-            gameEvents(event)
+            gameEvents(event, data)
         if game_state == 2:
             pauseEvents(event)
 
@@ -145,7 +150,7 @@ while True:
     if game_state:
         gameStart()
     Drawer.drawGroup()
-    # GridDisplay.displayGridfd(x_ceil, y_ceil)
+    # GridDisplay.displayGrid(x_ceil, y_ceil)
     fpsDisplay.displayFps()
     pygame.display.update()
     clock.tick(60)

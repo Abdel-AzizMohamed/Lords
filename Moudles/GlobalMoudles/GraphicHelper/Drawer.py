@@ -31,6 +31,8 @@ def drawGroup():
                 pygame.draw.rect(screen, item.border_color, item.border_rect)
             if item.type == "BT":
                 pygame.draw.rect(screen, item.active_color, item.rect)
+            if item.type == "IN":
+                pygame.draw.rect(screen, item.active_color, item.rect)
             elif item.type == "GR":
                 continue
             elif item.type == "SL":
@@ -47,8 +49,12 @@ def drawGroup():
                 screen.blit(item.fill_image, item.rect)
                 pygame.draw.rect(screen, item.base_bar_color, item.base_bar_rect)
                 screen.blit(item.bar_image, item.rect)
+            elif item.type == "ISL":
+                screen.blit(item.fill_image, item.rect)
+                pygame.draw.rect(screen, item.base_bar_color, item.base_bar_rect)
+                screen.blit(item.bar_image, item.rect)
+                screen.blit(item.handle_state, item.handle_rect)
             else:
-                print(round(255 * item.opacity))
                 surface = pygame.Surface(item.rect.size)
                 pygame.draw.rect(surface, item.active_color, item.rect)
                 surface.set_alpha(round(255 * item.opacity))
@@ -90,6 +96,8 @@ def readUiFile(ui_data, ui_group):
 
         if data["type"] == "BT":
             element = PyButton(data["group"], name, size, pos, data["grab"], data["frame"])
+        if data["type"] == "IN":
+            element = PyInput(data["group"], name, size, pos, data["grab"], data["frame"])
         elif data["type"] == "SL":
             element = PySlider(data["group"], name, size, pos, data["grab"], data["frame"])
         elif data["type"] == "FR":
@@ -100,6 +108,8 @@ def readUiFile(ui_data, ui_group):
             element = PyIButton(data["group"], name, data["urls"], pos, data["grab"], data["frame"], data["size"])
         elif data["type"] == "IPR":
             element = PyIProgress(data["group"], name, data["urls"], pos, data["grab"], data["frame"], data["size"])
+        elif data["type"] == "ISL":
+            element = PyISlider(data["group"], name, data["urls"], pos, data["grab"], data["frame"], data["size"])
         else:
             element = PyRect(data["group"], name, size, pos, data["grab"], data["frame"])
 

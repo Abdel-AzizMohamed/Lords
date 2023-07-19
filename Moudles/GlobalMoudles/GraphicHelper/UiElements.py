@@ -70,6 +70,13 @@ class PyButton(PyRect):
 
         self.disabled = False
 
+class PyInput(PyRect):
+    def __init__(self, group, name, width, pos, grab="", frame=""):
+        super().__init__(group, name, (width, 0), pos, grab, "IN", frame)
+
+        self.rect.height = 30
+        self.text = ""
+
 class PyProgressBar(PyRect):
     def __init__(self, group, name, width, pos, grab="", uiPrefix="", frame=""):
         super().__init__(group, name, (0, 0), pos, grab, uiPrefix, frame)

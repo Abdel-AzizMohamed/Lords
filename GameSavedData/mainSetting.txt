@@ -1,6 +1,6 @@
 {
   "bgm": 0,
-  "sfx": 0,
+  "sfx": 0.5137254901960784,
   "coins": 41080.0602983555,
   "clickUpCount": 174,
   "farmUpCount": 60,
