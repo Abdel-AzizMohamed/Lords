@@ -83,17 +83,26 @@ def checkInput(event, ui_dict):
                     if item.rect.collidepoint(pygame.mouse.get_pos()):
                         focus = item
                     else:
+                        if focus:
+                            focus.input_state = focus.border_image
                         focus = None
-    if focus:
+
+    if focus and (focus.type == "IIN" or focus.type == "IN"):
+        if focus.type == "IIN":
+            focus.input_state = focus.focus_image
         return inputInsert(event)
 
     return None
 
 def inputInsert(event):
+    global focus
+
     if event.type == pygame.KEYDOWN:
         if event.key == pygame.K_BACKSPACE:
             focus.text = focus.text[:-1]
         elif event.key == pygame.K_RETURN:
+            focus.input_state = focus.border_image
+            focus = None
             return True
         elif focus.rect_text.width >= focus.rect.width - 10:
             return False

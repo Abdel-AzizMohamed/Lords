@@ -31,7 +31,7 @@ def drawGroup():
                 pygame.draw.rect(screen, item.border_color, item.border_rect)
             if item.type == "BT":
                 pygame.draw.rect(screen, item.active_color, item.rect)
-            if item.type == "IN":
+            elif item.type == "IN":
                 pygame.draw.rect(screen, item.active_color, item.rect)
             elif item.type == "GR":
                 continue
@@ -54,6 +54,9 @@ def drawGroup():
                 pygame.draw.rect(screen, item.base_bar_color, item.base_bar_rect)
                 screen.blit(item.bar_image, item.rect)
                 screen.blit(item.handle_state, item.handle_rect)
+            elif item.type == "IIN":
+                screen.blit(item.input_state, item.rect)
+                screen.blit(item.field_image, item.rect)
             else:
                 surface = pygame.Surface(item.rect.size)
                 pygame.draw.rect(surface, item.active_color, item.rect)
@@ -110,6 +113,8 @@ def readUiFile(ui_data, ui_group):
             element = PyIProgress(data["group"], name, data["urls"], pos, data["grab"], data["frame"], data["size"])
         elif data["type"] == "ISL":
             element = PyISlider(data["group"], name, data["urls"], pos, data["grab"], data["frame"], data["size"])
+        elif data["type"] == "IIN":
+            element = PyIInput(data["group"], name, data["urls"], pos, data["grab"], data["frame"], data["size"])
         else:
             element = PyRect(data["group"], name, size, pos, data["grab"], data["frame"])
 

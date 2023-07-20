@@ -33,6 +33,24 @@ class PyIButton(PyRect):
 
         self.disabled = False
 
+class PyIInput(PyRect):
+    def __init__(self, group, name, urls, pos, grab="", frame="", scale=1):
+        super().__init__(group, name, (0, 0), pos, grab, "IIN", frame)
+
+        self.border_image = pygame.image.load(urls["border"]).convert_alpha()
+        self.focus_image = pygame.image.load(urls["focus"]).convert_alpha()
+        self.field_image = pygame.image.load(urls["field"]).convert_alpha()
+
+        self.border_image = pygame.transform.rotozoom(self.border_image, 0, scale)
+        self.focus_image = pygame.transform.rotozoom(self.focus_image, 0, scale)
+        self.field_image = pygame.transform.rotozoom(self.field_image, 0, scale)
+
+        self.rect.size = self.field_image.get_rect().size
+        self.border_rect.size = self.field_image.get_rect().size
+
+        self.text = ""
+        self.input_state = self.border_image
+
 class PyIProgress(PyRect):
     def __init__(self, group, name, urls, pos, grab="", frame="", scale=1, uiPrifix="IPR"):
         super().__init__(group, name, (0, 0), pos, grab, uiPrifix, frame)

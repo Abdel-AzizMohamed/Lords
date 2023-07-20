@@ -48,6 +48,10 @@ sounds_list.append(disabled_sound)
 AUTOSAVE = pygame.USEREVENT + 1
 pygame.time.set_timer(AUTOSAVE, 1000)
 
+if main_json["playerName"]:
+    game_state = 1
+    Drawer.excluded_dict["start_state"] = -1
+    Drawer.excluded_dict["game_state"] = 1
 
 ################### Ui small edits ###################
 Drawer.getElementByName("statsBt").addMargin(-25, -25)
@@ -81,13 +85,26 @@ def globalEvents(event):
 
     ## Ui events ##
     UiEvents.checkButtonState(event, Drawer.draw_dict, sounds_list)
-    UiEvents.checkInput(event, Drawer.draw_dict)
+    input_data = UiEvents.checkInput(event, Drawer.draw_dict)
     new_precnt = UiEvents.sliderGrab(event, Drawer.draw_dict)
 
-    return new_precnt
+    return (new_precnt, input_data)
 
-def startEvents(event):
-    pass
+def startEvents(event, data):
+    global game_state
+
+    if data:
+        main_json["playerName"] = Drawer.getElementByName("playerNameIin").text
+        game_state = 1
+        Drawer.excluded_dict["start_state"] = -1
+        Drawer.excluded_dict["game_state"] = 1
+
+    if event.type == pygame.MOUSEBUTTONUP:
+        if Drawer.getElementByName("startBt").rect.collidepoint(pygame.mouse.get_pos()):
+            main_json["playerName"] = Drawer.getElementByName("playerNameIin").text
+            game_state = 1
+            Drawer.excluded_dict["start_state"] = -1
+            Drawer.excluded_dict["game_state"] = 1
 
 def gameEvents(event, data):
     if data:
@@ -136,9 +153,9 @@ def checkEvents():
     for event in pygame.event.get():
         data = globalEvents(event)
         if game_state == 0:
-            startEvents(event)
+            startEvents(event, data[1])
         if game_state == 1:
-            gameEvents(event, data)
+            gameEvents(event, data[0])
         if game_state == 2:
             pauseEvents(event)
 

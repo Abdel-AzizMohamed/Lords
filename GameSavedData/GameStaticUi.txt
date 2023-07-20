@@ -374,22 +374,5 @@
         "text_color": "#FFFFFF",
         "text_align": "center",
         "layer": 1
-    },
-    "playerNameIN": {
-        "type": "IN",
-        "group": "gameplay",
-        "size": 6,
-        "pos": [15, 10],
-        "grab": "",
-        "attObj": "",
-        "frame": "",
-        "active_color": "#FFFFFF",
-        "border_color": "#333333",
-        "border_width": 1,
-        "font": "sm_mid_font",
-        "text": "",
-        "text_color": "#000000",
-        "text_align": "left",
-        "layer": 1
     }
 }
