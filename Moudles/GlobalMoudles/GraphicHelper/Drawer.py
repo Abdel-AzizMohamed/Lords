@@ -59,6 +59,7 @@ def drawGroup():
                 screen.blit(item.field_image, item.rect)
             else:
                 surface = pygame.Surface(item.rect.size)
+                surface.fill(item.active_color)
                 pygame.draw.rect(surface, item.active_color, item.rect)
                 surface.set_alpha(round(255 * item.opacity))
                 screen.blit(surface, item.rect)

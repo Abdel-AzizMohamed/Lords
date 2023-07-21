@@ -59,13 +59,26 @@ Drawer.getElementByName("mapsBt").addMargin(-25, -25)
 Drawer.getElementByName("bossesBt").addMargin(-25, -25)
 Drawer.getElementByName("settingBt").addMargin(-25, -25)
 Drawer.getElementByName("exitBt").addMargin(-25, -25)
+
 Drawer.getElementByName("healthBar").setSlider(.5)
 Drawer.getElementByName("xpBar").setSlider(.5)
 Drawer.getElementByName("monsterHphBar").setSlider(1)
+
 Drawer.getElementByName("bgm").setSlider(main_json["bgm"])
 Drawer.getElementByName("bgm").addMargin(0, -40, "text")
 Drawer.getElementByName("sfx").setSlider(main_json["sfx"])
 Drawer.getElementByName("sfx").addMargin(0, -40, "text")
+
+Drawer.getElementByName("playerNameText").updateText(mid_font, main_json["playerName"], "#FFFFFF", "left")
+Drawer.getElementByName("playerLevelText").updateText(mid_font, f"Lv.<{main_json['playerLevel']}>", "#FFFFFF", "right")
+Drawer.getElementByName("playerStats").updateText(sm_mid_font, f"{main_json['playerStats']}", "#FFFFFF", "left")
+
+Drawer.getElementByName("playerStatsLine").addPadding(0, -40)
+Drawer.getElementByName("playerStatsLine").addMargin(0, 33)
+Drawer.getElementByName("strLine").addPadding(0, -40)
+Drawer.getElementByName("strLine").addMargin(0, 33)
+Drawer.getElementByName("vitLine").addPadding(0, -40)
+Drawer.getElementByName("vitLine").addMargin(0, 33)
 
 Drawer.excluded_dict["game_list"]["statsMenu"] = -1
 Drawer.excluded_dict["game_list"]["mapMenu"] = -1

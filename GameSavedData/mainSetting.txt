@@ -1,5 +1,7 @@
 {
   "bgm": 0,
-  "sfx": 0.5137254901960784,
-  "playerName": "Katakuri"
+  "sfx": 0.7235294117647059,
+  "playerName": "Katakuri",
+  "playerLevel": 1,
+  "playerStats": 3
 }
