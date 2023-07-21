@@ -3,5 +3,7 @@
   "sfx": 0.7235294117647059,
   "playerName": "Katakuri",
   "playerLevel": 1,
-  "playerStats": 3
+  "playerStats": 0,
+  "str": 6,
+  "vit": 4
 }

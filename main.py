@@ -72,6 +72,8 @@ Drawer.getElementByName("sfx").addMargin(0, -40, "text")
 Drawer.getElementByName("playerNameText").updateText(mid_font, main_json["playerName"], "#FFFFFF", "left")
 Drawer.getElementByName("playerLevelText").updateText(mid_font, f"Lv.<{main_json['playerLevel']}>", "#FFFFFF", "right")
 Drawer.getElementByName("playerStats").updateText(sm_mid_font, f"{main_json['playerStats']}", "#FFFFFF", "left")
+Drawer.getElementByName("strPoints").updateText(sm_mid_font, f"{main_json['str']}", "#FFFFFF", "left")
+Drawer.getElementByName("vitPoints").updateText(sm_mid_font, f"{main_json['vit']}", "#FFFFFF", "left")
 
 Drawer.getElementByName("playerStatsLine").addPadding(0, -40)
 Drawer.getElementByName("playerStatsLine").addMargin(0, 33)
@@ -153,6 +155,14 @@ def gameEvents(event, data):
         elif Drawer.getElementByName("exitBt").rect.collidepoint(pygame.mouse.get_pos()):
             pygame.quit()
             sys.exit()
+        elif Drawer.getElementByName("strIncBt").rect.collidepoint(pygame.mouse.get_pos()):
+            if main_json["playerStats"] >= 1:
+                main_json["str"] += 1
+                main_json["playerStats"] -= 1
+        elif Drawer.getElementByName("vitIncBt").rect.collidepoint(pygame.mouse.get_pos()):
+            if main_json["playerStats"] >= 1:
+                main_json["vit"] += 1
+                main_json["playerStats"] -= 1
         elif Drawer.getElementByName("saveBt").rect.collidepoint(pygame.mouse.get_pos()):
             dataHandler.SaveJson("GameSavedData\\mainSetting.txt", main_json)
         elif Drawer.getElementByName("eraseBt").rect.collidepoint(pygame.mouse.get_pos()):
@@ -173,7 +183,16 @@ def checkEvents():
             pauseEvents(event)
 
 def gameStart():
-    pass
+    Drawer.getElementByName("strPoints").updateText(sm_mid_font, f"{main_json['str']}", "#FFFFFF", "left")
+    Drawer.getElementByName("vitPoints").updateText(sm_mid_font, f"{main_json['vit']}", "#FFFFFF", "left")
+    Drawer.getElementByName("playerStats").updateText(sm_mid_font, f"{main_json['playerStats']}", "#FFFFFF", "left")
+
+    if main_json["playerStats"] == 0:
+        Drawer.getElementByName("strIncBt").disabled = 1
+        Drawer.getElementByName("vitIncBt").disabled = 1
+    else:
+        Drawer.getElementByName("strIncBt").disabled = 0
+        Drawer.getElementByName("vitIncBt").disabled = 0
 
 while True:
     checkEvents()
