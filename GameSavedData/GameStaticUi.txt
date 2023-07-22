@@ -612,8 +612,8 @@
     "map2Bt": {
         "type": "IBT",
         "group": "mapMenu",
-        "urls": ["Sprites/Images/map_1.png", "Sprites/Images/map_1_hover.png",
-                "Sprites/Images/map_1_select.png", "Sprites/Images/map_disabled.png"],
+        "urls": ["Sprites/Images/map_2.png", "Sprites/Images/map_2_hover.png",
+                "Sprites/Images/map_2_select.png", "Sprites/Images/map_disabled.png"],
         "size": 1,
         "pos": [13, 4],
         "grab": "",
@@ -648,8 +648,8 @@
     "map4Bt": {
         "type": "IBT",
         "group": "mapMenu",
-        "urls": ["Sprites/Images/map_1.png", "Sprites/Images/map_1_hover.png",
-                "Sprites/Images/map_1_select.png", "Sprites/Images/map_disabled.png"],
+        "urls": ["Sprites/Images/map_4.png", "Sprites/Images/map_4_hover.png",
+                "Sprites/Images/map_4_select.png", "Sprites/Images/map_disabled.png"],
         "size": 1,
         "pos": [13, 7],
         "grab": "",
@@ -666,8 +666,8 @@
     "map5Bt": {
         "type": "IBT",
         "group": "mapMenu",
-        "urls": ["Sprites/Images/map_1.png", "Sprites/Images/map_1_hover.png",
-                "Sprites/Images/map_1_select.png", "Sprites/Images/map_disabled.png"],
+        "urls": ["Sprites/Images/map_5.png", "Sprites/Images/map_5_hover.png",
+                "Sprites/Images/map_5_select.png", "Sprites/Images/map_disabled.png"],
         "size": 1,
         "pos": [6, 10],
         "grab": "",
@@ -702,8 +702,8 @@
     "map7Bt": {
         "type": "IBT",
         "group": "mapMenu",
-        "urls": ["Sprites/Images/map_1.png", "Sprites/Images/map_1_hover.png",
-                "Sprites/Images/map_1_select.png", "Sprites/Images/map_disabled.png"],
+        "urls": ["Sprites/Images/map_7.png", "Sprites/Images/map_7_hover.png",
+                "Sprites/Images/map_7_select.png", "Sprites/Images/map_disabled.png"],
         "size": 1,
         "pos": [6, 13],
         "grab": "",
@@ -712,7 +712,7 @@
         "border_color": "#FFFFFF",
         "border_width": 0,
         "font": "sm_mid_font",
-        "text": "Caesar Castle (65)",
+        "text": "Vice Castle (65)",
         "text_color": "#FFFFFF",
         "text_align": "center",
         "layer": 1
@@ -720,8 +720,8 @@
     "map8Bt": {
         "type": "IBT",
         "group": "mapMenu",
-        "urls": ["Sprites/Images/map_1.png", "Sprites/Images/map_1_hover.png",
-                "Sprites/Images/map_1_select.png", "Sprites/Images/map_disabled.png"],
+        "urls": ["Sprites/Images/map_8.png", "Sprites/Images/map_8_hover.png",
+                "Sprites/Images/map_8_select.png", "Sprites/Images/map_disabled.png"],
         "size": 1,
         "pos": [13, 13],
         "grab": "",
@@ -730,7 +730,7 @@
         "border_color": "#FFFFFF",
         "border_width": 0,
         "font": "sm_mid_font",
-        "text": "Da7man Castle (85)",
+        "text": "Demon King Castle (85)",
         "text_color": "#FFFFFF",
         "text_align": "center",
         "layer": 1
