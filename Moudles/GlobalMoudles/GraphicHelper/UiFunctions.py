@@ -56,6 +56,8 @@ class UiDesgin():
             rect.bottomright = pos
         elif grab == "bottomleft":
             rect.bottomleft = pos
+        elif grab == "topright":
+            rect.topright = pos
 
         return rect
 
@@ -101,6 +103,8 @@ class UiDesgin():
             rect.midtop = (pos_x, pos_y)
         elif grab == "midbottom":
             rect.midbottom = (pos_x, pos_y)
+        elif grab == "topright":
+            rect.topright = pos
 
         return rect
 

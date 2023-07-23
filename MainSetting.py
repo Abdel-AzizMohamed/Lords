@@ -27,8 +27,6 @@ pygame.display.set_caption("Lords")
 game_state = 0
 sounds_list = []
 max_layer = 10
-map_width = 0
-map_height = 0
 
 ################### Game Fonts ###################
 sm_font = pygame.font.Font(r"fonts\Pixeltype.ttf", 20)

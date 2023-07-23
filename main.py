@@ -8,6 +8,7 @@ sys.path.append("Moudles\\GlobalMoudles")
 sys.path.append("Moudles\\GlobalMoudles\\GraphicHelper")
 sys.path.append("Moudles\\GlobalMoudles\\DevHelper")
 sys.path.append("Moudles\\OpatinalMoudles")
+sys.path.append("Moudles\\OpatinalMoudles\\LevelsHelper")
 sys.path.append("Moudles\\OnceMoudles")
 
 ################### My Packges ###################
@@ -22,18 +23,19 @@ import GridDisplay
 import fpsDisplay
 #### Opatinal Packges ####
 import timeControl
+from Maper import *
 
 #### Once Packges ####
-
-################### Game Varibales ###################
 
 ################### Game Init ###################
 main_json = dataHandler.readJson("GameSavedData\\mainSetting.txt")
 start_ui_json = dataHandler.readJson("GameSavedData\\StartStaticUi.txt")
 game_ui_json = dataHandler.readJson("GameSavedData\\GameStaticUi.txt")
+map_json = dataHandler.readJson("GameSavedData\\GameMapData.txt")
 
 Drawer.readUiFile(start_ui_json, "start_list")
 Drawer.readUiFile(game_ui_json, "game_list")
+readMapFile(map_json)
 
 music = mixerControl.Music("Sounds\\bgm", "Ultrakill.mp3", main_json["bgm"])
 pygame.mixer.music.play(-1)
@@ -53,6 +55,9 @@ if main_json["playerName"]:
     Drawer.excluded_dict["start_state"] = -1
     Drawer.excluded_dict["game_state"] = 1
 
+################### Game Varibales ###################
+active_map = Map.cureent_map = Map.maps["startVillege"]
+
 ################### Ui small edits ###################
 Drawer.getElementByName("statsBt").addMargin(-25, -25)
 Drawer.getElementByName("mapsBt").addMargin(-25, -25)
@@ -70,6 +75,7 @@ Drawer.getElementByName("sfx").setSlider(main_json["sfx"])
 Drawer.getElementByName("sfx").addMargin(0, -40, "text")
 
 Drawer.getElementByName("playerNameText").updateText(mid_font, main_json["playerName"], "#FFFFFF", "left")
+Drawer.getElementByName("playerName").updateText(mid_font, main_json["playerName"], "#FFFFFF", "left")
 Drawer.getElementByName("playerLevelText").updateText(mid_font, f"Lv.<{main_json['playerLevel']}>", "#FFFFFF", "right")
 Drawer.getElementByName("playerStats").updateText(sm_mid_font, f"{main_json['playerStats']}", "#FFFFFF", "left")
 Drawer.getElementByName("strPoints").updateText(sm_mid_font, f"{main_json['str']}", "#FFFFFF", "left")
@@ -155,6 +161,7 @@ def gameEvents(event, data):
         elif Drawer.getElementByName("exitBt").rect.collidepoint(pygame.mouse.get_pos()):
             pygame.quit()
             sys.exit()
+
         elif Drawer.getElementByName("strIncBt").rect.collidepoint(pygame.mouse.get_pos()):
             if main_json["playerStats"] >= 1:
                 main_json["str"] += 1
@@ -163,6 +170,12 @@ def gameEvents(event, data):
             if main_json["playerStats"] >= 1:
                 main_json["vit"] += 1
                 main_json["playerStats"] -= 1
+
+        elif Drawer.getElementByName("map1Bt").rect.collidepoint(pygame.mouse.get_pos()):
+            Map.cureent_map = Map.maps["startVillege"]
+        elif Drawer.getElementByName("map2Bt").rect.collidepoint(pygame.mouse.get_pos()):
+            Map.cureent_map = Map.maps["forst"]
+
         elif Drawer.getElementByName("saveBt").rect.collidepoint(pygame.mouse.get_pos()):
             dataHandler.SaveJson("GameSavedData\\mainSetting.txt", main_json)
         elif Drawer.getElementByName("eraseBt").rect.collidepoint(pygame.mouse.get_pos()):
@@ -186,6 +199,9 @@ def gameStart():
     Drawer.getElementByName("strPoints").updateText(sm_mid_font, f"{main_json['str']}", "#FFFFFF", "left")
     Drawer.getElementByName("vitPoints").updateText(sm_mid_font, f"{main_json['vit']}", "#FFFFFF", "left")
     Drawer.getElementByName("playerStats").updateText(sm_mid_font, f"{main_json['playerStats']}", "#FFFFFF", "left")
+
+    Drawer.getElementByName("mapName").updateText(mid_font, f"{Map.cureent_map.name}", "#FFFFFF", "left")
+
 
     if main_json["playerStats"] == 0:
         Drawer.getElementByName("strIncBt").disabled = 1

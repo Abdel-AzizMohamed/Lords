@@ -1,2 +1,10 @@
 {
+    "startVillege": {
+        "group": "map1",
+        "collisions": []
+    },
+    "forst": {
+        "group": "map2",
+        "collisions": []
+    }
 }
