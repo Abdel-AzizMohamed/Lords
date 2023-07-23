@@ -80,7 +80,7 @@ class Map():
         for i in range(ent_count):
             monster = cls.selectEntitie()
             new_monster = Entitie.createCopy(monster)
-            cls.current_entities["monster"].append(monster)
+            cls.current_entities["monster"].append(new_monster)
 
 
     @staticmethod

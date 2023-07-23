@@ -62,7 +62,8 @@ mon_max_hp = Map.current_entities['monster'][0].hp
 mon_name = Map.current_entities['monster'][0].name
 
 ################### Game Varibales ###################
-
+attack_timer = timeControl.Timer(1000)
+attack_timer.startTimer()
 ################### Ui small edits ###################
 Drawer.getElementByName("statsBt").addMargin(-25, -25)
 Drawer.getElementByName("mapsBt").addMargin(-25, -25)
@@ -184,12 +185,14 @@ def gameEvents(event, data):
             Map.current_entities["player"].damge = main_json["str"]
             mon_max_hp = Map.current_entities['monster'][0].hp
             mon_name = Map.current_entities['monster'][0].name
+            attack_timer.startTimer()
         elif Drawer.getElementByName("map2Bt").rect.collidepoint(pygame.mouse.get_pos()):
             Map.changeMap("forst", 1)
             Map.current_entities["player"].hp = main_json["vit"] * 10
             Map.current_entities["player"].damge = main_json["str"]
             mon_max_hp = Map.current_entities['monster'][0].hp
             mon_name = Map.current_entities['monster'][0].name
+            attack_timer.startTimer()
 
         elif Drawer.getElementByName("saveBt").rect.collidepoint(pygame.mouse.get_pos()):
             dataHandler.SaveJson("GameSavedData\\mainSetting.txt", main_json)
@@ -210,6 +213,8 @@ def checkEvents():
             pauseEvents(event)
 
 def gameStart():
+    global mon_max_hp, mon_name
+
     Drawer.getElementByName("strPoints").updateText(sm_mid_font, f"{main_json['str']}", "#FFFFFF", "left")
     Drawer.getElementByName("vitPoints").updateText(sm_mid_font, f"{main_json['vit']}", "#FFFFFF", "left")
     Drawer.getElementByName("playerStats").updateText(sm_mid_font, f"{main_json['playerStats']}", "#FFFFFF", "left")
@@ -230,6 +235,29 @@ def gameStart():
     else:
         Drawer.getElementByName("strIncBt").disabled = 0
         Drawer.getElementByName("vitIncBt").disabled = 0
+
+    if attack_timer.checkTimer():
+        Map.current_entities['player'].hp -= Map.current_entities['monster'][0].damge
+        Map.current_entities['monster'][0].hp -= Map.current_entities['player'].damge
+
+        if Map.current_entities['monster'][0].hp <= 0:
+            map_name = Map.cureent_map.name
+            Map.changeMap(map_name, 1)
+            Map.current_entities["player"].hp = main_json["vit"] * 10
+            Map.current_entities["player"].damge = main_json["str"]
+            mon_max_hp = Map.current_entities['monster'][0].hp
+            mon_name = Map.current_entities['monster'][0].name
+            attack_timer.startTimer()
+
+        elif Map.current_entities['player'].hp <= 0:
+            Map.changeMap("startVillege", 1)
+            Map.current_entities["player"].hp = main_json["vit"] * 10
+            Map.current_entities["player"].damge = main_json["str"]
+            mon_max_hp = Map.current_entities['monster'][0].hp
+            mon_name = Map.current_entities['monster'][0].name
+            attack_timer.startTimer()
+
+        attack_timer.startTimer()
 
 while True:
     checkEvents()
