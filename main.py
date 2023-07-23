@@ -55,8 +55,13 @@ if main_json["playerName"]:
     Drawer.excluded_dict["start_state"] = -1
     Drawer.excluded_dict["game_state"] = 1
 
+Map.changeMap("startVillege", 1)
+Map.current_entities["player"].hp = main_json["vit"] * 10
+Map.current_entities["player"].damge = main_json["str"]
+mon_max_hp = Map.current_entities['monster'][0].hp
+mon_name = Map.current_entities['monster'][0].name
+
 ################### Game Varibales ###################
-active_map = Map.cureent_map = Map.maps["startVillege"]
 
 ################### Ui small edits ###################
 Drawer.getElementByName("statsBt").addMargin(-25, -25)
@@ -128,6 +133,8 @@ def startEvents(event, data):
             Drawer.excluded_dict["game_state"] = 1
 
 def gameEvents(event, data):
+    global mon_max_hp, mon_name
+
     if data:
         if data[0] == "bgm":
             main_json["bgm"] = data[1]
@@ -172,9 +179,17 @@ def gameEvents(event, data):
                 main_json["playerStats"] -= 1
 
         elif Drawer.getElementByName("map1Bt").rect.collidepoint(pygame.mouse.get_pos()):
-            Map.cureent_map = Map.maps["startVillege"]
+            Map.changeMap("startVillege", 1)
+            Map.current_entities["player"].hp = main_json["vit"] * 10
+            Map.current_entities["player"].damge = main_json["str"]
+            mon_max_hp = Map.current_entities['monster'][0].hp
+            mon_name = Map.current_entities['monster'][0].name
         elif Drawer.getElementByName("map2Bt").rect.collidepoint(pygame.mouse.get_pos()):
-            Map.cureent_map = Map.maps["forst"]
+            Map.changeMap("forst", 1)
+            Map.current_entities["player"].hp = main_json["vit"] * 10
+            Map.current_entities["player"].damge = main_json["str"]
+            mon_max_hp = Map.current_entities['monster'][0].hp
+            mon_name = Map.current_entities['monster'][0].name
 
         elif Drawer.getElementByName("saveBt").rect.collidepoint(pygame.mouse.get_pos()):
             dataHandler.SaveJson("GameSavedData\\mainSetting.txt", main_json)
@@ -183,7 +198,6 @@ def gameEvents(event, data):
 
 def pauseEvents(event):
     pass
-
 
 def checkEvents():
     for event in pygame.event.get():
@@ -200,8 +214,15 @@ def gameStart():
     Drawer.getElementByName("vitPoints").updateText(sm_mid_font, f"{main_json['vit']}", "#FFFFFF", "left")
     Drawer.getElementByName("playerStats").updateText(sm_mid_font, f"{main_json['playerStats']}", "#FFFFFF", "left")
 
-    Drawer.getElementByName("mapName").updateText(mid_font, f"{Map.cureent_map.name}", "#FFFFFF", "left")
+    Drawer.getElementByName("mapName").updateText(mid_font, Map.cureent_map.name, "#FFFFFF", "left")
 
+    mon_current_hp = Map.current_entities['monster'][0].hp
+    Drawer.getElementByName("monsterHphBar").updateText(mid_font, f"HP ({mon_current_hp}/{mon_max_hp})", "#FFFFFF", "center")
+    Drawer.getElementByName("monsterName").updateText(mid_font, mon_name, "#FFFFFF", "center")
+
+    pl_current_hp = Map.current_entities['player'].hp
+    pl_max_hp = main_json["vit"] * 10
+    Drawer.getElementByName("healthBar").updateText(mid_font, f"HP ({pl_current_hp}/{pl_max_hp})", "#FFFFFF", "center")
 
     if main_json["playerStats"] == 0:
         Drawer.getElementByName("strIncBt").disabled = 1

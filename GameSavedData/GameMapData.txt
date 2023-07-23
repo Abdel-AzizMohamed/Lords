@@ -1,10 +1,18 @@
 {
     "startVillege": {
         "group": "map1",
-        "collisions": []
+        "collisions": [],
+        "entities": [
+            {"name": "test", "type": "player", "hp": 5, "damge": 1},
+            {"name": "slime", "type": "monster", "hp": 15, "damge": 1}
+        ]
     },
     "forst": {
         "group": "map2",
-        "collisions": []
+        "collisions": [],
+        "entities": [
+            {"name": "test", "type": "player", "hp": 5, "damge": 1},
+            {"name": "wolf", "type": "monster", "hp": 100, "damge": 15}
+        ]
     }
 }
