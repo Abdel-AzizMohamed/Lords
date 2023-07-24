@@ -767,7 +767,7 @@
         "text_color": "#FFFFFF",
         "text_align": "left",
         "layer": 1,
-        "text_width": 50,
+        "line_width": 10,
         "line_height": 20,
         "lines": 4
     }

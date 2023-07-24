@@ -145,3 +145,28 @@ class PyMultiArea(PyRect):
 
             new_obj.opacity = 0
             self.text_elements.append(new_obj)
+
+    def setText(self, text):
+        text_split = text.split(" ")
+
+        for ele in self.text_elements:
+            ele.updateText(sm_mid_font, "", "#FFFFFF", "left")
+
+        current_length = 0
+        current_str = ""
+        ele_index = 0
+        current_ele = self.text_elements[ele_index]
+
+        for word in text_split:
+            current_length += len(word) + 1
+
+            if current_length > self.line_width and ele_index < len(self.text_elements) - 1:
+                current_ele.updateText(sm_mid_font, current_str, "#FFFFFF", "left")
+                ele_index += 1
+                current_ele = self.text_elements[ele_index]
+                current_length = 0
+                current_str = ""
+
+            current_str += word
+            current_str += " "
+        current_ele.updateText(sm_mid_font, current_str, "#FFFFFF", "left")

@@ -6,5 +6,5 @@
   "playerStats": 6,
   "str": 30,
   "vit": 39,
-  "xp": 49
+  "xp": 509
 }
