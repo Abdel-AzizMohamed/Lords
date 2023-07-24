@@ -752,5 +752,23 @@
         "text_color": "#FFFFFF",
         "text_align": "center",
         "layer": 1
+    },
+    "playerNoti": {
+        "type": "MA",
+        "group": "gameplay",
+        "size": [1, 1],
+        "pos": [10, 6],
+        "grab": "",
+        "active_color": "#FFFFFF",
+        "border_color": "#FFFFFF",
+        "border_width": 0,
+        "font": "sm_mid_font",
+        "text": "",
+        "text_color": "#FFFFFF",
+        "text_align": "left",
+        "layer": 1,
+        "text_width": 50,
+        "line_height": 20,
+        "lines": 4
     }
 }

@@ -41,6 +41,9 @@ def drawGroup():
                 pygame.draw.rect(screen, item.handle_color, item.handle_rect)
             elif item.type == "CI":
                 pygame.draw.circle(screen, item.active_color, item.rect.center, item.radius)
+            elif item.type == "MA":
+                for text_ele in item.text_list:
+                    screen.blit(text_ele.ren_text, text_ele.rect_text)
             elif item.type == "IMG":
                 screen.blit(item.image, item.rect)
             elif item.type == "IBT":
@@ -106,6 +109,8 @@ def readUiFile(ui_data, ui_group):
             element = PySlider(data["group"], name, size, pos, data["grab"], data["frame"])
         elif data["type"] == "FR":
             element = PyFrame(data["group"], name, size, pos, data["grab"])
+        elif data["type"] == "MA":
+            element = PyMultiArea(data["group"], name, size, pos, data["grab"], data["lines"], data["line_height"])
         elif data["type"] == "IMG":
             element = PyImage(data["group"], name, data["url"], pos, data["grab"], data["frame"], data["size"])
         elif data["type"] == "IBT":

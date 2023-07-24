@@ -240,6 +240,8 @@ def gameStart():
             if main_json["xp"] >= xpCalc(main_json['playerLevel']):
                 main_json["xp"] -= xpCalc(main_json['playerLevel'])
                 main_json['playerLevel'] += 1
+                main_json['str'] += 1
+                main_json['vit'] += 1
                 main_json['playerStats'] += 3
                 Drawer.getElementByName("playerLevelText").updateText(mid_font, f"Lv.<{main_json['playerLevel']}>", "#FFFFFF", "right")
 

@@ -122,3 +122,26 @@ class PyFrame(PyRect):
     def moveChildren(self, x, y):
         for child in self.children:
             child.addMargin(x, y)
+
+class PyMultiArea(PyRect):
+    def __init__(self, group, name, size, pos, grab, lines, line_height):
+        super().__init__(group, name, size, pos, grab, "MA")
+
+        self.line_height = line_height
+        self.text_elements = []
+        self.text_list = []
+
+        self.createTextFields(size, pos, grab, lines)
+
+    def createTextFields(self, size, pos, grab, lines):
+        for ele in range(lines):
+            new_obj = PyRect(self.group, f"{self.name}_text{ele + 1}", (1, 1), (pos[0], pos[1] + 1), grab)
+
+            if not len(self.text_elements):
+                new_obj.addMargin(0, self.line_height)
+            else:
+                new_obj.rect.y = self.text_elements[ele - 1].rect.y + self.text_elements[ele - 1].rect.height
+                new_obj.addMargin(0, self.line_height)
+
+            new_obj.opacity = 0
+            self.text_elements.append(new_obj)
