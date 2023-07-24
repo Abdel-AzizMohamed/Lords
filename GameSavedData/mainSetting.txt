@@ -4,6 +4,6 @@
   "playerName": "Katakuri",
   "playerLevel": 1,
   "playerStats": 0,
-  "str": 10,
-  "vit": 4
+  "str": 1,
+  "vit": 25
 }

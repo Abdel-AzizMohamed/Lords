@@ -1,7 +1,6 @@
 ################### packges ###################
 import pygame
 import sys
-from random import randint, choice
 
 ################### Paths ###################
 sys.path.append("Moudles\\GlobalMoudles")
@@ -24,6 +23,7 @@ import fpsDisplay
 #### Opatinal Packges ####
 import timeControl
 from Maper import *
+from repeatedFuns import *
 
 #### Once Packges ####
 
@@ -55,15 +55,12 @@ if main_json["playerName"]:
     Drawer.excluded_dict["start_state"] = -1
     Drawer.excluded_dict["game_state"] = 1
 
-Map.changeMap("startVillege", 1)
-Map.current_entities["player"].hp = main_json["vit"] * 10
-Map.current_entities["player"].damge = main_json["str"]
-mon_max_hp = Map.current_entities['monster'][0].hp
-mon_name = Map.current_entities['monster'][0].name
-
+mon_max_hp, mon_name = resetBattle("startVillege", Map, main_json)
 ################### Game Varibales ###################
 attack_timer = timeControl.Timer(1000)
 attack_timer.startTimer()
+regen_timer = timeControl.Timer(2500)
+regen_timer.startTimer()
 ################### Ui small edits ###################
 Drawer.getElementByName("statsBt").addMargin(-25, -25)
 Drawer.getElementByName("mapsBt").addMargin(-25, -25)
@@ -174,25 +171,17 @@ def gameEvents(event, data):
             if main_json["playerStats"] >= 1:
                 main_json["str"] += 1
                 main_json["playerStats"] -= 1
+                Map.current_entities["player"].damge = main_json["str"]
         elif Drawer.getElementByName("vitIncBt").rect.collidepoint(pygame.mouse.get_pos()):
             if main_json["playerStats"] >= 1:
                 main_json["vit"] += 1
                 main_json["playerStats"] -= 1
 
         elif Drawer.getElementByName("map1Bt").rect.collidepoint(pygame.mouse.get_pos()):
-            Map.changeMap("startVillege", 1)
-            Map.current_entities["player"].hp = main_json["vit"] * 10
-            Map.current_entities["player"].damge = main_json["str"]
-            mon_max_hp = Map.current_entities['monster'][0].hp
-            mon_name = Map.current_entities['monster'][0].name
-            attack_timer.startTimer()
+            mon_max_hp, mon_name = resetBattle("startVillege", Map, main_json)
         elif Drawer.getElementByName("map2Bt").rect.collidepoint(pygame.mouse.get_pos()):
-            Map.changeMap("forst", 1)
-            Map.current_entities["player"].hp = main_json["vit"] * 10
-            Map.current_entities["player"].damge = main_json["str"]
-            mon_max_hp = Map.current_entities['monster'][0].hp
-            mon_name = Map.current_entities['monster'][0].name
-            attack_timer.startTimer()
+            mon_max_hp, mon_name = resetBattle("forst", Map, main_json)
+
 
         elif Drawer.getElementByName("saveBt").rect.collidepoint(pygame.mouse.get_pos()):
             dataHandler.SaveJson("GameSavedData\\mainSetting.txt", main_json)
@@ -237,27 +226,22 @@ def gameStart():
         Drawer.getElementByName("vitIncBt").disabled = 0
 
     if attack_timer.checkTimer():
-        Map.current_entities['player'].hp -= Map.current_entities['monster'][0].damge
-        Map.current_entities['monster'][0].hp -= Map.current_entities['player'].damge
+        calc_attack(Map)
 
         if Map.current_entities['monster'][0].hp <= 0:
             map_name = Map.cureent_map.name
-            Map.changeMap(map_name, 1)
-            Map.current_entities["player"].hp = main_json["vit"] * 10
-            Map.current_entities["player"].damge = main_json["str"]
-            mon_max_hp = Map.current_entities['monster'][0].hp
-            mon_name = Map.current_entities['monster'][0].name
-            attack_timer.startTimer()
+            mon_max_hp, mon_name = resetBattle(map_name, Map, main_json)
 
         elif Map.current_entities['player'].hp <= 0:
-            Map.changeMap("startVillege", 1)
-            Map.current_entities["player"].hp = main_json["vit"] * 10
-            Map.current_entities["player"].damge = main_json["str"]
-            mon_max_hp = Map.current_entities['monster'][0].hp
-            mon_name = Map.current_entities['monster'][0].name
-            attack_timer.startTimer()
+            mon_max_hp, mon_name = resetBattle("startVillege", Map, main_json)
 
         attack_timer.startTimer()
+
+    if regen_timer.checkTimer():
+        Map.current_entities['player'].hp += round(Map.current_entities['player'].hp * .1)
+        if Map.current_entities['player'].hp > main_json["vit"] * 10:
+            Map.current_entities['player'].hp = main_json["vit"] * 10
+        regen_timer.startTimer()
 
 while True:
     checkEvents()

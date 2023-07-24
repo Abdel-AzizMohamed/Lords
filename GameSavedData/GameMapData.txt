@@ -12,7 +12,7 @@
         "collisions": [],
         "entities": [
             {"name": "test", "type": "player", "hp": 5, "damge": 1},
-            {"name": "wolf", "type": "monster", "hp": 100, "damge": 15}
+            {"name": "wolf", "type": "monster", "hp": 1000, "damge": 1}
         ]
     }
 }
