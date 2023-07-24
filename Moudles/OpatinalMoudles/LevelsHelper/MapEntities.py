@@ -13,7 +13,7 @@ class Entitie():
         Magic Methods:
             __init__(self, name, type, hp, damge)
     """
-    def __init__(self, name, type, hp, damge):
+    def __init__(self, name, type, hp, damge, xp):
         """Initalize a new object
 
             Args:
@@ -26,9 +26,10 @@ class Entitie():
         self.type = type
         self.hp = hp
         self.damge = damge
+        self.xp = xp
 
     @classmethod
     def createCopy(cls, obj):
-        new_obj = cls(obj.name, obj.type, obj.hp, obj.damge)
+        new_obj = cls(obj.name, obj.type, obj.hp, obj.damge, obj.xp)
 
         return new_obj

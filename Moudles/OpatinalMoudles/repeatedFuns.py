@@ -25,3 +25,6 @@ def calc_attack(Map):
 
     Map.current_entities['player'].hp -=  round(mon_damge_diff * pl_crit_ch)
     Map.current_entities['monster'][0].hp -= round( pl_damge_diff * mon_crit_ch)
+
+def xpCalc(level):
+    return round((level/0.3)**2)

@@ -213,10 +213,14 @@ def gameStart():
     mon_current_hp = Map.current_entities['monster'][0].hp
     Drawer.getElementByName("monsterHphBar").updateText(mid_font, f"HP ({mon_current_hp}/{mon_max_hp})", "#FFFFFF", "center")
     Drawer.getElementByName("monsterName").updateText(mid_font, mon_name, "#FFFFFF", "center")
+    Drawer.getElementByName("monsterHphBar").setSlider(mon_current_hp / mon_max_hp)
 
     pl_current_hp = Map.current_entities['player'].hp
     pl_max_hp = main_json["vit"] * 10
     Drawer.getElementByName("healthBar").updateText(mid_font, f"HP ({pl_current_hp}/{pl_max_hp})", "#FFFFFF", "center")
+    Drawer.getElementByName("xpBar").updateText(mid_font, f"HP ({main_json['xp']}/{xpCalc(main_json['playerLevel'])})", "#000000", "center")
+    Drawer.getElementByName("healthBar").setSlider(pl_current_hp / pl_max_hp)
+    Drawer.getElementByName("xpBar").setSlider(main_json['xp'] / xpCalc(main_json['playerLevel']))
 
     if main_json["playerStats"] == 0:
         Drawer.getElementByName("strIncBt").disabled = 1
@@ -231,6 +235,13 @@ def gameStart():
         if Map.current_entities['monster'][0].hp <= 0:
             map_name = Map.cureent_map.name
             mon_max_hp, mon_name = resetBattle(map_name, Map, main_json)
+            main_json["xp"] += Map.current_entities['monster'][0].xp
+
+            if main_json["xp"] >= xpCalc(main_json['playerLevel']):
+                main_json["xp"] -= xpCalc(main_json['playerLevel'])
+                main_json['playerLevel'] += 1
+                main_json['playerStats'] += 3
+                Drawer.getElementByName("playerLevelText").updateText(mid_font, f"Lv.<{main_json['playerLevel']}>", "#FFFFFF", "right")
 
         elif Map.current_entities['player'].hp <= 0:
             mon_max_hp, mon_name = resetBattle("startVillege", Map, main_json)

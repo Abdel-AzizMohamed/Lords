@@ -103,7 +103,7 @@ def readMapFile(file):
     for key, item in file.items():
         map_item = Map(key, item["group"], item["collisions"])
         for ent in item["entities"]:
-            ent_obj = Entitie(ent["name"], ent["type"], ent["hp"], ent["damge"])
+            ent_obj = Entitie(ent["name"], ent["type"], ent["hp"], ent["damge"], ent["xp"])
             if ent_obj.type == "player":
                 map_item.entities["player"] = ent_obj
             else:

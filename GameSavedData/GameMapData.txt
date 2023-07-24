@@ -3,16 +3,16 @@
         "group": "map1",
         "collisions": [],
         "entities": [
-            {"name": "test", "type": "player", "hp": 5, "damge": 1},
-            {"name": "slime", "type": "monster", "hp": 15, "damge": 1}
+            {"name": "test", "type": "player", "hp": 5, "damge": 1, "xp": 0},
+            {"name": "slime", "type": "monster", "hp": 15, "damge": 1, "xp": 10}
         ]
     },
     "forst": {
         "group": "map2",
         "collisions": [],
         "entities": [
-            {"name": "test", "type": "player", "hp": 5, "damge": 1},
-            {"name": "wolf", "type": "monster", "hp": 1000, "damge": 1}
+            {"name": "test", "type": "player", "hp": 5, "damge": 1, "xp": 0},
+            {"name": "wolf", "type": "monster", "hp": 1000, "damge": 1, "xp": 25}
         ]
     }
 }
