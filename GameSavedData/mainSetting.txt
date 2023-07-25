@@ -2,9 +2,9 @@
   "bgm": 0,
   "sfx": 0.4137254901960784,
   "playerName": "Katakuri",
-  "playerLevel": 7,
-  "playerStats": 6,
-  "str": 30,
-  "vit": 39,
-  "xp": 509
+  "playerLevel": 4,
+  "playerStats": 18,
+  "str": 3,
+  "vit": 43,
+  "xp": 145
 }

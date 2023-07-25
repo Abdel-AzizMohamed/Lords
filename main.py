@@ -230,14 +230,20 @@ def gameStart():
         Drawer.getElementByName("vitIncBt").disabled = 0
 
     if attack_timer.checkTimer():
-        calc_attack(Map)
+        mon_damge, pl_damge = calc_attack(Map)
+
+        Drawer.getElementByName("playerNoti").addQueue(f"You Damged {pl_damge}")
+        Drawer.getElementByName("monsterNoti").addQueue(f"Monster Damge {mon_damge}")
 
         if Map.current_entities['monster'][0].hp <= 0:
             map_name = Map.cureent_map.name
             mon_max_hp, mon_name = resetBattle(map_name, Map, main_json)
             main_json["xp"] += Map.current_entities['monster'][0].xp
+            Drawer.getElementByName("playerNoti").addQueue(f"You Gained {Map.current_entities['monster'][0].xp} XP!")
+
 
             if main_json["xp"] >= xpCalc(main_json['playerLevel']):
+                Drawer.getElementByName("playerNoti").addQueue(f"Level UP!!")
                 main_json["xp"] -= xpCalc(main_json['playerLevel'])
                 main_json['playerLevel'] += 1
                 main_json['str'] += 1

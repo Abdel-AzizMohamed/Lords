@@ -42,7 +42,7 @@ def drawGroup():
             elif item.type == "CI":
                 pygame.draw.circle(screen, item.active_color, item.rect.center, item.radius)
             elif item.type == "MA":
-                for text_ele in item.text_list:
+                for text_ele in item.text_elements:
                     screen.blit(text_ele.ren_text, text_ele.rect_text)
             elif item.type == "IMG":
                 screen.blit(item.image, item.rect)

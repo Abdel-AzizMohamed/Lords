@@ -757,7 +757,7 @@
         "type": "MA",
         "group": "gameplay",
         "size": [1, 1],
-        "pos": [10, 6],
+        "pos": [29, 14],
         "grab": "",
         "active_color": "#FFFFFF",
         "border_color": "#FFFFFF",
@@ -768,7 +768,25 @@
         "text_align": "left",
         "layer": 1,
         "line_width": 10,
-        "line_height": 20,
+        "line_height": -5,
+        "lines": 4
+    },
+    "monsterNoti": {
+        "type": "MA",
+        "group": "gameplay",
+        "size": [1, 1],
+        "pos": [20, 1],
+        "grab": "",
+        "active_color": "#FFFFFF",
+        "border_color": "#FFFFFF",
+        "border_width": 0,
+        "font": "sm_mid_font",
+        "text": "",
+        "text_color": "#FFFFFF",
+        "text_align": "left",
+        "layer": 1,
+        "line_width": 10,
+        "line_height": 5,
         "lines": 4
     }
 }

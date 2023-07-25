@@ -129,7 +129,7 @@ class PyMultiArea(PyRect):
 
         self.line_height = line_height
         self.text_elements = []
-        self.text_list = []
+        self.text_list = ["", "", "", ""]
 
         self.createTextFields(size, pos, grab, lines)
 
@@ -140,7 +140,10 @@ class PyMultiArea(PyRect):
             if not len(self.text_elements):
                 new_obj.addMargin(0, self.line_height)
             else:
-                new_obj.rect.y = self.text_elements[ele - 1].rect.y + self.text_elements[ele - 1].rect.height
+                if self.line_height > 0:
+                    new_obj.rect.y = self.text_elements[ele - 1].rect.y + (self.text_elements[ele - 1].rect.height)
+                else:
+                    new_obj.rect.y = self.text_elements[ele - 1].rect.y - (self.text_elements[ele - 1].rect.height)
                 new_obj.addMargin(0, self.line_height)
 
             new_obj.opacity = 0
@@ -170,3 +173,11 @@ class PyMultiArea(PyRect):
             current_str += word
             current_str += " "
         current_ele.updateText(sm_mid_font, current_str, "#FFFFFF", "left")
+
+    def addQueue(self, text):
+        for i in range(0, len(self.text_list) - 1):
+            self.text_list[-1 - i] = self.text_list[-1 - i - 1]
+        self.text_list[0] = text
+
+        for ele in range(len(self.text_elements)):
+            self.text_elements[ele].updateText(sm_mid_font, self.text_list[ele], "#FFFFFF", "left")
