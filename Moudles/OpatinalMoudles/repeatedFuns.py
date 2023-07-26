@@ -15,13 +15,13 @@ def calc_attack(Map):
     crit_num = randint(1, 25)
     pl_crit_ch = 1
     if randint(1, 25) == crit_num:
-        pl_crit_ch = 1.3
+        pl_crit_ch = 2
     mon_crit_ch = 1
     if randint(1, 25) == crit_num:
-        mon_crit_ch = 1.3
+        mon_crit_ch = 2
 
-    mon_damge_diff = randint(round(Map.current_entities['monster'][0].damge * .7), Map.current_entities['monster'][0].damge)
-    pl_damge_diff = randint(round(Map.current_entities['player'].damge * .7), Map.current_entities['player'].damge)
+    mon_damge_diff = randint(round(Map.current_entities['monster'][0].damge * .8), Map.current_entities['monster'][0].damge)
+    pl_damge_diff = randint(round(Map.current_entities['player'].damge * .8), Map.current_entities['player'].damge)
 
     Map.current_entities['player'].hp -=  round(mon_damge_diff * pl_crit_ch)
     Map.current_entities['monster'][0].hp -= round( pl_damge_diff * mon_crit_ch)

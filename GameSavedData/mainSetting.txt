@@ -1,10 +1,14 @@
 {
   "bgm": 0,
-  "sfx": 0.4137254901960784,
+  "sfx": 0.15098039215686274,
   "playerName": "Katakuri",
-  "playerLevel": 4,
-  "playerStats": 18,
-  "str": 3,
-  "vit": 43,
-  "xp": 145
+  "playerLevel": 52,
+  "playerStats": 0,
+  "str": 161,
+  "vit": 99,
+  "xp": 23270,
+  "boss1": 1,
+  "boss2": 1,
+  "boss3": 0,
+  "boss4": 0
 }

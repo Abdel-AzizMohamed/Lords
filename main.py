@@ -37,7 +37,7 @@ Drawer.readUiFile(start_ui_json, "start_list")
 Drawer.readUiFile(game_ui_json, "game_list")
 readMapFile(map_json)
 
-music = mixerControl.Music("Sounds\\bgm", "Ultrakill.mp3", main_json["bgm"])
+music = mixerControl.Music("Sounds\\bgm", "bgm.mp3", main_json["bgm"])
 pygame.mixer.music.play(-1)
 
 hover_sound = mixerControl.Sound("Sounds\\sfx", "button_hover.mp3", main_json["sfx"])
@@ -91,10 +91,15 @@ Drawer.getElementByName("strLine").addMargin(0, 33)
 Drawer.getElementByName("vitLine").addPadding(0, -40)
 Drawer.getElementByName("vitLine").addMargin(0, 33)
 
-Drawer.excluded_dict["game_list"]["statsMenu"] = -1
+Drawer.excluded_dict["game_list"]["statsMenu"] = 1
 Drawer.excluded_dict["game_list"]["mapMenu"] = -1
 Drawer.excluded_dict["game_list"]["bossMenu"] = -1
 Drawer.excluded_dict["game_list"]["settingMenu"] = -1
+
+Drawer.getElementByName("boss1Bt").disabled = main_json["boss1"]
+Drawer.getElementByName("boss2Bt").disabled = main_json["boss2"]
+Drawer.getElementByName("boss3Bt").disabled = main_json["boss3"]
+Drawer.getElementByName("boss4Bt").disabled = main_json["boss4"]
 ################### Game Events ###################
 def globalEvents(event):
     if event.type == pygame.QUIT:
@@ -177,10 +182,30 @@ def gameEvents(event, data):
                 main_json["vit"] += 1
                 main_json["playerStats"] -= 1
 
-        elif Drawer.getElementByName("map1Bt").rect.collidepoint(pygame.mouse.get_pos()):
+        elif Drawer.getElementByName("map1Bt").rect.collidepoint(pygame.mouse.get_pos()) and Drawer.excluded_dict["game_list"]["mapMenu"] == 1:
             mon_max_hp, mon_name = resetBattle("startVillege", Map, main_json)
-        elif Drawer.getElementByName("map2Bt").rect.collidepoint(pygame.mouse.get_pos()):
+        elif Drawer.getElementByName("map2Bt").rect.collidepoint(pygame.mouse.get_pos()) and Drawer.excluded_dict["game_list"]["mapMenu"] == 1:
             mon_max_hp, mon_name = resetBattle("forst", Map, main_json)
+        elif Drawer.getElementByName("map3Bt").rect.collidepoint(pygame.mouse.get_pos()) and Drawer.excluded_dict["game_list"]["mapMenu"] == 1:
+            mon_max_hp, mon_name = resetBattle("plains", Map, main_json)
+        elif Drawer.getElementByName("map4Bt").rect.collidepoint(pygame.mouse.get_pos()) and Drawer.excluded_dict["game_list"]["mapMenu"] == 1:
+            mon_max_hp, mon_name = resetBattle("banditLair", Map, main_json)
+        elif Drawer.getElementByName("map5Bt").rect.collidepoint(pygame.mouse.get_pos()) and Drawer.excluded_dict["game_list"]["mapMenu"] == 1:
+            mon_max_hp, mon_name = resetBattle("magicForst", Map, main_json)
+        elif Drawer.getElementByName("map6Bt").rect.collidepoint(pygame.mouse.get_pos()) and Drawer.excluded_dict["game_list"]["mapMenu"] == 1:
+            mon_max_hp, mon_name = resetBattle("DemonsArea", Map, main_json)
+        elif Drawer.getElementByName("map7Bt").rect.collidepoint(pygame.mouse.get_pos()) and Drawer.excluded_dict["game_list"]["mapMenu"] == 1:
+            mon_max_hp, mon_name = resetBattle("viceCastle", Map, main_json)
+        elif Drawer.getElementByName("map8Bt").rect.collidepoint(pygame.mouse.get_pos()) and Drawer.excluded_dict["game_list"]["mapMenu"] == 1:
+            mon_max_hp, mon_name = resetBattle("demonKingCastle", Map, main_json)
+        elif Drawer.getElementByName("boss1Bt").rect.collidepoint(pygame.mouse.get_pos()) and main_json["boss1"] == 0:
+            mon_max_hp, mon_name = resetBattle("deepForst", Map, main_json)
+        elif Drawer.getElementByName("boss2Bt").rect.collidepoint(pygame.mouse.get_pos()) and main_json["boss2"] == 0:
+            mon_max_hp, mon_name = resetBattle("BanditLeaderRoom", Map, main_json)
+        elif Drawer.getElementByName("boss3Bt").rect.collidepoint(pygame.mouse.get_pos()) and main_json["boss3"] == 0:
+            mon_max_hp, mon_name = resetBattle("ViceRoom", Map, main_json)
+        elif Drawer.getElementByName("boss4Bt").rect.collidepoint(pygame.mouse.get_pos()) and main_json["boss4"] == 0:
+            mon_max_hp, mon_name = resetBattle("DemonKingRoom", Map, main_json)
 
 
         elif Drawer.getElementByName("saveBt").rect.collidepoint(pygame.mouse.get_pos()):
@@ -218,7 +243,7 @@ def gameStart():
     pl_current_hp = Map.current_entities['player'].hp
     pl_max_hp = main_json["vit"] * 10
     Drawer.getElementByName("healthBar").updateText(mid_font, f"HP ({pl_current_hp}/{pl_max_hp})", "#FFFFFF", "center")
-    Drawer.getElementByName("xpBar").updateText(mid_font, f"HP ({main_json['xp']}/{xpCalc(main_json['playerLevel'])})", "#000000", "center")
+    Drawer.getElementByName("xpBar").updateText(mid_font, f"XP ({main_json['xp']}/{xpCalc(main_json['playerLevel'])})", "#000000", "center")
     Drawer.getElementByName("healthBar").setSlider(pl_current_hp / pl_max_hp)
     Drawer.getElementByName("xpBar").setSlider(main_json['xp'] / xpCalc(main_json['playerLevel']))
 
@@ -237,19 +262,41 @@ def gameStart():
 
         if Map.current_entities['monster'][0].hp <= 0:
             map_name = Map.cureent_map.name
-            mon_max_hp, mon_name = resetBattle(map_name, Map, main_json)
-            main_json["xp"] += Map.current_entities['monster'][0].xp
-            Drawer.getElementByName("playerNoti").addQueue(f"You Gained {Map.current_entities['monster'][0].xp} XP!")
+            if map_name == "deepForst":
+                main_json["boss1"] = 1
+                Drawer.getElementByName("boss1Bt").disabled = 1
+                mon_max_hp, mon_name = resetBattle("startVillege", Map, main_json)
+                Drawer.getElementByName("playerNoti").addQueue(f"You Have Killed Black Wolf!!")
+            elif map_name == "BanditLeaderRoom":
+                main_json["boss2"] = 1
+                Drawer.getElementByName("boss2Bt").disabled = 1
+                mon_max_hp, mon_name = resetBattle("startVillege", Map, main_json)
+                Drawer.getElementByName("playerNoti").addQueue(f"You Have Killed Bandit Leader!!")
+            elif map_name == "ViceRoom":
+                main_json["boss3"] = 1
+                Drawer.getElementByName("boss3Bt").disabled = 1
+                mon_max_hp, mon_name = resetBattle("startVillege", Map, main_json)
+                Drawer.getElementByName("playerNoti").addQueue(f"You Have Killed Vice Demon King!!")
+            elif map_name == "DemonKingRoom":
+                main_json["boss4"] = 1
+                Drawer.getElementByName("boss4Bt").disabled = 1
+                mon_max_hp, mon_name = resetBattle("startVillege", Map, main_json)
+                Drawer.getElementByName("playerNoti").addQueue(f"You Have Killed Demon King!!")
+
+            else:
+                mon_max_hp, mon_name = resetBattle(map_name, Map, main_json)
+                main_json["xp"] += Map.current_entities['monster'][0].xp
+                Drawer.getElementByName("playerNoti").addQueue(f"You Gained {Map.current_entities['monster'][0].xp} XP!")
 
 
-            if main_json["xp"] >= xpCalc(main_json['playerLevel']):
-                Drawer.getElementByName("playerNoti").addQueue(f"Level UP!!")
-                main_json["xp"] -= xpCalc(main_json['playerLevel'])
-                main_json['playerLevel'] += 1
-                main_json['str'] += 1
-                main_json['vit'] += 1
-                main_json['playerStats'] += 3
-                Drawer.getElementByName("playerLevelText").updateText(mid_font, f"Lv.<{main_json['playerLevel']}>", "#FFFFFF", "right")
+                if main_json["xp"] >= xpCalc(main_json['playerLevel']):
+                    Drawer.getElementByName("playerNoti").addQueue(f"Level UP!!")
+                    main_json["xp"] -= xpCalc(main_json['playerLevel'])
+                    main_json['playerLevel'] += 1
+                    main_json['str'] += 1
+                    main_json['vit'] += 1
+                    main_json['playerStats'] += 3
+                    Drawer.getElementByName("playerLevelText").updateText(mid_font, f"Lv.<{main_json['playerLevel']}>", "#FFFFFF", "right")
 
         elif Map.current_entities['player'].hp <= 0:
             mon_max_hp, mon_name = resetBattle("startVillege", Map, main_json)
@@ -268,6 +315,6 @@ while True:
         gameStart()
     Drawer.drawGroup()
     # GridDisplay.displayGrid(x_ceil, y_ceil)
-    fpsDisplay.displayFps()
+    # fpsDisplay.displayFps()
     pygame.display.update()
     clock.tick(60)

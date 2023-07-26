@@ -4,7 +4,7 @@
         "collisions": [],
         "entities": [
             {"name": "test", "type": "player", "hp": 5, "damge": 1, "xp": 0},
-            {"name": "slime", "type": "monster", "hp": 15, "damge": 1, "xp": 10}
+            {"name": "slime", "type": "monster", "hp": 15, "damge": 1, "xp": 2}
         ]
     },
     "forst": {
@@ -12,7 +12,87 @@
         "collisions": [],
         "entities": [
             {"name": "test", "type": "player", "hp": 5, "damge": 1, "xp": 0},
-            {"name": "wolf", "type": "monster", "hp": 1000, "damge": 1, "xp": 25}
+            {"name": "wolf", "type": "monster", "hp": 100, "damge": 15, "xp": 25}
+        ]
+    },
+    "plains": {
+        "group": "map3",
+        "collisions": [],
+        "entities": [
+            {"name": "test", "type": "player", "hp": 5, "damge": 1, "xp": 0},
+            {"name": "normal bandit", "type": "monster", "hp": 350, "damge": 40, "xp": 75}
+        ]
+    },
+    "banditLair": {
+        "group": "map4",
+        "collisions": [],
+        "entities": [
+            {"name": "test", "type": "player", "hp": 5, "damge": 1, "xp": 0},
+            {"name": "strong bandit", "type": "monster", "hp": 600, "damge": 65, "xp": 150}
+        ]
+    },
+    "magicForst": {
+        "group": "map5",
+        "collisions": [],
+        "entities": [
+            {"name": "test", "type": "player", "hp": 5, "damge": 1, "xp": 0},
+            {"name": "Magic Red Wolf", "type": "monster", "hp": 850, "damge": 90, "xp": 400}
+        ]
+    },
+    "DemonsArea": {
+        "group": "map6",
+        "collisions": [],
+        "entities": [
+            {"name": "test", "type": "player", "hp": 5, "damge": 1, "xp": 0},
+            {"name": "Lower Demon", "type": "monster", "hp": 1200, "damge": 130, "xp": 800}
+        ]
+    },
+    "viceCastle": {
+        "group": "map7",
+        "collisions": [],
+        "entities": [
+            {"name": "test", "type": "player", "hp": 5, "damge": 1, "xp": 0},
+            {"name": "Dark Knight", "type": "monster", "hp": 1600, "damge": 165, "xp": 1750}
+        ]
+    },
+    "demonKingCastle": {
+        "group": "map8",
+        "collisions": [],
+        "entities": [
+            {"name": "test", "type": "player", "hp": 5, "damge": 1, "xp": 0},
+            {"name": "arc Demon", "type": "monster", "hp": 2100, "damge": 205, "xp": 2250}
+        ]
+    },
+    "deepForst": {
+        "group": "boss1",
+        "collisions": [],
+        "entities": [
+            {"name": "test", "type": "player", "hp": 5, "damge": 1, "xp": 0},
+            {"name": "Black Wolf", "type": "monster", "hp": 250, "damge": 25, "xp": 0}
+        ]
+    },
+    "BanditLeaderRoom": {
+        "group": "boss2",
+        "collisions": [],
+        "entities": [
+            {"name": "test", "type": "player", "hp": 5, "damge": 1, "xp": 0},
+            {"name": "Bandit Leader", "type": "monster", "hp": 750, "damge": 75, "xp": 0}
+        ]
+    },
+    "ViceRoom": {
+        "group": "boss3",
+        "collisions": [],
+        "entities": [
+            {"name": "test", "type": "player", "hp": 5, "damge": 1, "xp": 0},
+            {"name": "Vice Demon King", "type": "monster", "hp": 1750, "damge": 175, "xp": 0}
+        ]
+    },
+    "DemonKingRoom": {
+        "group": "boss4",
+        "collisions": [],
+        "entities": [
+            {"name": "test", "type": "player", "hp": 5, "damge": 1, "xp": 0},
+            {"name": "Lower Demon", "type": "monster", "hp": 2800, "damge": 220, "xp": 0}
         ]
     }
 }
