@@ -8,10 +8,14 @@ pygame.mixer.init()
 ################### pygame main variables ###################
 os.environ['SDL_VIDEO_CENTERED'] = "1"
 screen_info = pygame.display.Info()
+# os.environ['SDL_VIDEO_WINDOW_POS'] = "100,500"
 moniter_width, moniter_height = screen_info.current_w, screen_info.current_h
-# os.environ['SDL_VIDEO_WINDOW_POS'] = f"{1366},{moniter_height // 2}"
+
 screen_width = moniter_width
 screen_height = moniter_height
+
+width_ratio = screen_width / 1920
+height_ratio = screen_height / 1080
 
 x_ceil = 18
 y_ceil = 32

@@ -315,6 +315,6 @@ while True:
         gameStart()
     Drawer.drawGroup()
     # GridDisplay.displayGrid(x_ceil, y_ceil)
-    # fpsDisplay.displayFps()
+    fpsDisplay.displayFps()
     pygame.display.update()
     clock.tick(60)
