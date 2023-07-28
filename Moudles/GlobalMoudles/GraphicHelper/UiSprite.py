@@ -7,10 +7,13 @@ class PyImage(PyRect):
     def __init__(self, group, name, url, pos, grab="", frame="", scale=1, prefix="IMG"):
         super().__init__(group, name, (0, 0), pos, grab, "IMG", frame)
         self.image = pygame.image.load(url).convert_alpha()
+
+        self.image = pygame.transform.scale(self.image, (width_ratio * self.image.get_width(), height_ratio * self.image.get_height()))
         self.image = pygame.transform.rotozoom(self.image, 0, scale)
 
         self.rect.size = self.image.get_rect().size
         self.border_rect.size = self.image.get_rect().size
+
 
 class PyIButton(PyRect):
     def __init__(self, group, name, urls, pos, grab="", frame="", scale=1):
@@ -20,6 +23,11 @@ class PyIButton(PyRect):
         self.hover_image = pygame.image.load(urls[1]).convert_alpha()
         self.select_image = pygame.image.load(urls[2]).convert_alpha()
         self.disabled_image = pygame.image.load(urls[3]).convert_alpha()
+
+        self.image = pygame.transform.scale(self.image, (width_ratio * self.image.get_width(), height_ratio * self.image.get_height()))
+        self.hover_image = pygame.transform.scale(self.hover_image, (width_ratio * self.hover_image.get_width(), height_ratio * self.hover_image.get_height()))
+        self.select_image = pygame.transform.scale(self.select_image, (width_ratio * self.select_image.get_width(), height_ratio * self.select_image.get_height()))
+        self.disabled_image = pygame.transform.scale(self.disabled_image, (width_ratio * self.disabled_image.get_width(), height_ratio * self.disabled_image.get_height()))
 
         self.image = pygame.transform.rotozoom(self.image, 0, scale)
         self.hover_image = pygame.transform.rotozoom(self.hover_image, 0, scale)
@@ -41,6 +49,10 @@ class PyIInput(PyRect):
         self.focus_image = pygame.image.load(urls["focus"]).convert_alpha()
         self.field_image = pygame.image.load(urls["field"]).convert_alpha()
 
+        self.border_image = pygame.transform.scale(self.border_image, (width_ratio * self.border_image.get_width(), height_ratio * self.border_image.get_height()))
+        self.focus_image = pygame.transform.scale(self.focus_image, (width_ratio * self.focus_image.get_width(), height_ratio * self.focus_image.get_height()))
+        self.field_image = pygame.transform.scale(self.field_image, (width_ratio * self.field_image.get_width(), height_ratio * self.field_image.get_height()))
+
         self.border_image = pygame.transform.rotozoom(self.border_image, 0, scale)
         self.focus_image = pygame.transform.rotozoom(self.focus_image, 0, scale)
         self.field_image = pygame.transform.rotozoom(self.field_image, 0, scale)
@@ -57,6 +69,9 @@ class PyIProgress(PyRect):
 
         self.bar_image = pygame.image.load(urls["bar"]).convert_alpha()
         self.fill_image = pygame.image.load(urls["fill"]).convert_alpha()
+
+        self.bar_image = pygame.transform.scale(self.bar_image, (width_ratio * self.bar_image.get_width(), height_ratio * self.bar_image.get_height()))
+        self.fill_image = pygame.transform.scale(self.fill_image, (width_ratio * self.fill_image.get_width(), height_ratio * self.fill_image.get_height()))
 
         self.bar_image = pygame.transform.rotozoom(self.bar_image, 0, scale)
         self.fill_image = pygame.transform.rotozoom(self.fill_image, 0, scale)
@@ -84,6 +99,10 @@ class PyISlider(PyIProgress):
         self.handle_image = pygame.image.load(urls["handle"]).convert_alpha()
         self.handle_hover_image = pygame.image.load(urls["hover"]).convert_alpha()
         self.handle_select_image = pygame.image.load(urls["select"]).convert_alpha()
+
+        self.handle_image = pygame.transform.scale(self.handle_image, (width_ratio * self.handle_image.get_width(), height_ratio * self.handle_image.get_height()))
+        self.handle_hover_image = pygame.transform.scale(self.handle_hover_image, (width_ratio * self.handle_hover_image.get_width(), height_ratio * self.handle_hover_image.get_height()))
+        self.handle_select_image = pygame.transform.scale(self.handle_select_image, (width_ratio * self.handle_select_image.get_width(), height_ratio * self.handle_select_image.get_height()))
 
         self.handle_image = pygame.transform.rotozoom(self.handle_image, 0, scale)
         self.handle_hover_image = pygame.transform.rotozoom(self.handle_hover_image, 0, scale)
