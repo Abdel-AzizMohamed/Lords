@@ -3,21 +3,47 @@ from MainSetting import *
 from UiElements import *
 
 
-class PyImage(PyRect):
-    def __init__(self, group, name, url, pos, grab="", frame="", scale=1, prefix="IMG"):
-        super().__init__(group, name, (0, 0), pos, grab, "IMG", frame)
+
+class PyImageBase(PygameBase):
+    image_list = {}
+    def __init__(self, group, name, ui_prifix):
+        super().__init__(group, name, ui_prifix)
+
+
+    # @staticmethod
+    # def loadImages(path):
+    #     images = os.listdir(path)
+
+    #     for image in images:
+    #         if image.find(".jpg") != -1:
+    #             loaded_image = pygame.image.load(image).convert()
+    #             image_name = image[:-4]
+    #             PyImageBase.image_list.update({image_name: loaded_image})
+    #         elif image.find(".png") != -1:
+    #             loaded_image = pygame.image.load(image).convert_alpha()
+    #             image_name = image[:-4]
+    #             PyImageBase.image_list.update({image_name: loaded_image})
+    #         else:
+    #             raise TypeError("Engine only support 2 types (jpg, png)")
+
+
+class PyImage(PyImageBase):
+    def __init__(self, group, name, url, pos, grab="", scale=1):
+        super().__init__(group, name, "IMG")
+
         self.image = pygame.image.load(url).convert_alpha()
 
         self.image = pygame.transform.scale(self.image, (width_ratio * self.image.get_width(), height_ratio * self.image.get_height()))
         self.image = pygame.transform.rotozoom(self.image, 0, scale)
 
+        self.rect = super().setGeo((0, 0), pos, grab)
         self.rect.size = self.image.get_rect().size
-        self.border_rect.size = self.image.get_rect().size
 
+        super().createText()
 
-class PyIButton(PyRect):
-    def __init__(self, group, name, urls, pos, grab="", frame="", scale=1):
-        super().__init__(group, name, (0, 0), pos, grab, "IBT", frame)
+class PyIButton(PygameBase):
+    def __init__(self, group, name, urls, pos, grab="", scale=1):
+        super().__init__(group, name, "IBT")
 
         self.image = pygame.image.load(urls[0]).convert_alpha()
         self.hover_image = pygame.image.load(urls[1]).convert_alpha()
@@ -34,16 +60,19 @@ class PyIButton(PyRect):
         self.select_image = pygame.transform.rotozoom(self.select_image, 0, scale)
         self.disabled_image = pygame.transform.rotozoom(self.disabled_image, 0, scale)
 
+        self.rect = super().setGeo((0, 0), pos, grab)
         self.rect.size = self.image.get_rect().size
-        self.border_rect.size = self.image.get_rect().size
+
+        super().createText()
 
         self.button_state = self.image
 
         self.disabled = False
 
-class PyIInput(PyRect):
-    def __init__(self, group, name, urls, pos, grab="", frame="", scale=1):
-        super().__init__(group, name, (0, 0), pos, grab, "IIN", frame)
+
+class PyIInput(PygameBase):
+    def __init__(self, group, name, urls, pos, grab="", scale=1):
+        super().__init__(group, name, "IIN")
 
         self.border_image = pygame.image.load(urls["border"]).convert_alpha()
         self.focus_image = pygame.image.load(urls["focus"]).convert_alpha()
@@ -57,15 +86,18 @@ class PyIInput(PyRect):
         self.focus_image = pygame.transform.rotozoom(self.focus_image, 0, scale)
         self.field_image = pygame.transform.rotozoom(self.field_image, 0, scale)
 
+        self.rect = super().setGeo((0, 0), pos, grab)
         self.rect.size = self.field_image.get_rect().size
-        self.border_rect.size = self.field_image.get_rect().size
+
+        super().createText()
 
         self.text = ""
         self.input_state = self.border_image
 
-class PyIProgress(PyRect):
-    def __init__(self, group, name, urls, pos, grab="", frame="", scale=1, uiPrifix="IPR"):
-        super().__init__(group, name, (0, 0), pos, grab, uiPrifix, frame)
+
+class PyIProgress(PygameBase):
+    def __init__(self, group, name, urls, pos, grab="", scale=1, ui_prifix="IPR"):
+        super().__init__(group, name, ui_prifix)
 
         self.bar_image = pygame.image.load(urls["bar"]).convert_alpha()
         self.fill_image = pygame.image.load(urls["fill"]).convert_alpha()
@@ -76,12 +108,13 @@ class PyIProgress(PyRect):
         self.bar_image = pygame.transform.rotozoom(self.bar_image, 0, scale)
         self.fill_image = pygame.transform.rotozoom(self.fill_image, 0, scale)
 
+        self.rect = super().setGeo((0, 0), pos, grab)
         self.rect.size = self.bar_image.get_rect().size
-        self.border_rect.size = self.bar_image.get_rect().size
+
+        super().createText()
 
         self.base_bar_rect = pygame.Rect((self.rect.x, self.rect.y), self.rect.size)
         self.base_bar_color = "#333333"
-
 
         self.start_pos = self.rect.centerx - self.rect.width / 2
         self.end_pos = self.rect.centerx + self.rect.width / 2
@@ -92,9 +125,10 @@ class PyIProgress(PyRect):
         self.base_bar_rect.width = self.rect.width - (self.rect.width * new_precent)
         self.base_bar_rect.x = self.rect.width * new_precent + self.rect.x
 
+
 class PyISlider(PyIProgress):
-    def __init__(self, group, name, urls, pos, grab="", frame="", scale=1):
-        super().__init__(group, name, urls, pos, grab, frame, scale, "ISL")
+    def __init__(self, group, name, urls, pos, grab="", scale=1):
+        super().__init__(group, name, urls, pos, grab, scale, "ISL")
 
         self.handle_image = pygame.image.load(urls["handle"]).convert_alpha()
         self.handle_hover_image = pygame.image.load(urls["hover"]).convert_alpha()
@@ -111,6 +145,8 @@ class PyISlider(PyIProgress):
         self.handle_rect = self.handle_image.get_rect()
         self.handle_rect.center = self.rect.center
         self.handle_rect.y += 2
+
+        super().createText()
 
         self.handle_state = self.handle_image
 
