@@ -35,39 +35,35 @@ class UiDesgin():
         self.border_rect.y = rect_pos_y
 
     ######################## Set Functions ##############################
-    def setVector(self, size, pos, grab=""):
-        rect = pygame.Rect((0, 0), size)
+    # def setVector(self, size, pos, grab=""):
+    #     rect = pygame.Rect((0, 0), size)
 
-        if grab == "":
-            rect.topleft = pos
-        elif grab == "bottomleft":
-            rect.bottomleft = pos
-        elif grab == "center":
-            rect.center = pos
-        elif grab == "midright":
-            rect.midright = pos
-        elif grab == "midleft":
-            rect.midleft = pos
-        elif grab == "midtop":
-            rect.midtop = pos
-        elif grab == "midbottom":
-            rect.midbottom = pos
-        elif grab == "bottomright":
-            rect.bottomright = pos
-        elif grab == "bottomleft":
-            rect.bottomleft = pos
-        elif grab == "topright":
-            rect.topright = pos
+    #     if grab == "":
+    #         rect.topleft = pos
+    #     elif grab == "bottomleft":
+    #         rect.bottomleft = pos
+    #     elif grab == "center":
+    #         rect.center = pos
+    #     elif grab == "midright":
+    #         rect.midright = pos
+    #     elif grab == "midleft":
+    #         rect.midleft = pos
+    #     elif grab == "midtop":
+    #         rect.midtop = pos
+    #     elif grab == "midbottom":
+    #         rect.midbottom = pos
+    #     elif grab == "bottomright":
+    #         rect.bottomright = pos
+    #     elif grab == "bottomleft":
+    #         rect.bottomleft = pos
+    #     elif grab == "topright":
+    #         rect.topright = pos
 
-        return rect
+    #     return rect
 
     def setGeo(self, size, pos, grab="", create=True):
-        if self.frame == None:
-            base_x = screen_width / y_ceil
-            base_y = screen_height / x_ceil
-        else:
-            base_x = self.frame.rect.width / x_ceil
-            base_y = self.frame.rect.height / y_ceil
+        base_x = screen_width / y_ceil
+        base_y = screen_height / x_ceil
 
         if size[0] > y_ceil or size[1] > x_ceil:
             print(f"You have inerted a size bigger than {x_ceil}")
@@ -77,12 +73,8 @@ class UiDesgin():
         size_x = round(size[0] * base_x)
         size_y = round(size[1] * base_y)
 
-        if self.frame == None:
-            pos_x = round(pos[0] * base_x)
-            pos_y = round(pos[1] * base_y)
-        else:
-            pos_x = round(pos[0] * base_x) + self.frame.rect.x
-            pos_y = round(pos[1] * base_y) + self.frame.rect.y
+        pos_x = round(pos[0] * base_x)
+        pos_y = round(pos[1] * base_y)
 
         if not create:
             return ((pos_x, pos_y), (size_x, size_y))

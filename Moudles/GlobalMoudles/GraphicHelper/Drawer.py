@@ -27,9 +27,12 @@ def drawGroup():
 
     for layer in elements.values():
         for item in layer:
-            if item.border_width > 0:
+            if getattr(item, "border_width", 0) > 0:
                 pygame.draw.rect(screen, item.border_color, item.border_rect)
-            if item.type == "BT":
+
+            if item.type == "CI":
+                pygame.draw.circle(screen, item.active_color, item.rect.center, item.radius)
+            elif item.type == "BT":
                 pygame.draw.rect(screen, item.active_color, item.rect)
             elif item.type == "IN":
                 pygame.draw.rect(screen, item.active_color, item.rect)
@@ -39,11 +42,10 @@ def drawGroup():
                 pygame.draw.rect(screen, item.bar_color, item.rect)
                 pygame.draw.rect(screen, item.bar_fill_color, item.bar_fill_rect)
                 pygame.draw.rect(screen, item.handle_color, item.handle_rect)
-            elif item.type == "CI":
-                pygame.draw.circle(screen, item.active_color, item.rect.center, item.radius)
             elif item.type == "MA":
                 for text_ele in item.text_elements:
                     screen.blit(text_ele.ren_text, text_ele.rect_text)
+
             elif item.type == "IMG":
                 screen.blit(item.image, item.rect)
             elif item.type == "IBT":
@@ -60,6 +62,7 @@ def drawGroup():
             elif item.type == "IIN":
                 screen.blit(item.input_state, item.rect)
                 screen.blit(item.field_image, item.rect)
+
             else:
                 surface = pygame.Surface(item.rect.size)
                 surface.fill(item.active_color)
@@ -95,40 +98,36 @@ def readUiFile(ui_data, ui_group):
     for name, data in ui_data.items():
         createGroup(data["group"], ui_group)
 
-        if type(data["size"]) == list:
-            size = (data["size"][0], data["size"][1])
-        else:
-            size = data["size"]
-        pos = (data["pos"][0], data["pos"][1])
-
         if data["type"] == "BT":
-            element = PyButton(data["group"], name, size, pos, data["grab"], data["frame"])
+            element = PyButton(data["group"], name, data["size"], data["pos"], data["grab"])
         if data["type"] == "IN":
-            element = PyInput(data["group"], name, size, pos, data["grab"], data["frame"])
+            element = PyInput(data["group"], name, data["size"], data["pos"], data["grab"])
         elif data["type"] == "SL":
-            element = PySlider(data["group"], name, size, pos, data["grab"], data["frame"])
+            element = PySlider(data["group"], name, data["size"], data["pos"], data["grab"])
         elif data["type"] == "FR":
-            element = PyFrame(data["group"], name, size, pos, data["grab"])
+            element = PyFrame(data["group"], name, data["size"], data["pos"], data["grab"])
         elif data["type"] == "MA":
-            element = PyMultiArea(data["group"], name, size, pos, data["grab"], data["lines"], data["line_height"])
+            element = PyMultiArea(data["group"], name, data["size"], data["pos"], data["grab"], data["lines"], data["line_height"])
         elif data["type"] == "IMG":
-            element = PyImage(data["group"], name, data["url"], pos, data["grab"], data["frame"], data["size"])
+            element = PyImage(data["group"], name, data["url"], data["pos"], data["grab"], data["scale"])
         elif data["type"] == "IBT":
-            element = PyIButton(data["group"], name, data["urls"], pos, data["grab"], data["frame"], data["size"])
+            element = PyIButton(data["group"], name, data["urls"], data["pos"], data["grab"], data["scale"])
         elif data["type"] == "IPR":
-            element = PyIProgress(data["group"], name, data["urls"], pos, data["grab"], data["frame"], data["size"])
+            element = PyIProgress(data["group"], name, data["urls"], data["pos"], data["grab"], data["scale"])
         elif data["type"] == "ISL":
-            element = PyISlider(data["group"], name, data["urls"], pos, data["grab"], data["frame"], data["size"])
+            element = PyISlider(data["group"], name, data["urls"], data["pos"], data["grab"], data["scale"])
         elif data["type"] == "IIN":
-            element = PyIInput(data["group"], name, data["urls"], pos, data["grab"], data["frame"], data["size"])
+            element = PyIInput(data["group"], name, data["urls"], data["pos"], data["grab"], data["scale"])
         else:
-            element = PyRect(data["group"], name, size, pos, data["grab"], data["frame"])
+            element = PyRect(data["group"], name, data["size"], data["pos"], data["grab"])
 
         for attr_name, attr_data in data.items():
             setattr(element, attr_name, attr_data)
 
-        element.updateText(fonts_dict[data["font"]], data["text"], data["text_color"], data["text_align"])
-        element.setBorder(element.border_width, element.border_color)
+        if getattr(element, "text_align", -1) != -1:
+            element.updateText(fonts_dict[data["font"]], data["text"], data["text_color"], data["text_align"])
+        if getattr(element, "border_width", -1) != -1:
+            element.setBorder(element.border_width, element.border_color)
 
 def getElementByName(name):
     for group in draw_dict.values():
