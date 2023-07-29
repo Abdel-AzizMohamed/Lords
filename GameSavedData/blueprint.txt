@@ -2,123 +2,195 @@
 ############## Rect BLUEPRINT ##############
 "Name": {
     "type": "",
-    "group": "Group Name",
-    "size": [width, height], ## grid value
-    "pos": [x, y], ## grid balue
-    "grab": "grab point", ## ex: center, midbottom, etc..
-    "attObj": "attatched object", ## ex: player, bullet, etc..
-    "frame": "frame name", ## to move along the frame
+    "group": "",
+    "size": [width, height],
+    "pos": [x, y],
+    "grab": "grab point",
     "active_color": "hex color",
     "border_color": "hex color",
     "border_width": size,
-    "font": "font name from main setting",
-    "text": "text to display",
+    "font": "font",
+    "text": "text",
     "text_color": "hex color",
-    "text_align": "text align", ## left, center, etc..
-    "layer":, layer starts from 1 to max_layering ## value defined in main setting
-    "opacity": "given rect opacity"
+    "text_align": "text align",
+    "layer": 1,
+    "opacity": 1
+}
+
+############## Circle BLUEPRINT ##############
+"Name": {
+    "type": "CI",
+    "group": "",
+    "radius": radius,
+    "pos": [x, y],
+    "grab": "grab point",
+    "active_color": "hex color",
+    "border_color": "hex color",
+    "border_width": size,
+    "layer": 1,
 }
 
 ############## Button BLUEPRINT ##############
 "Name": {
     "type": "BT",
-    "group": "Group Name",
-    "size": [width, height], ## grid value
-    "pos": [x, y], ## grid balue
-    "grab": "grab point", ## ex: center, midbottom, etc..
-    "attObj": "attatched object", ## ex: player, bullet, etc..
-    "frame": "frame name", ## to move along the frame
+    "group": "",
+    "size": [width, height],
+    "pos": [x, y],
+    "grab": "grab point",
     "base_color": "#hex color",
     "hover_color": "hex color",
     "select_color": "hex color",
     "disabled_color": "hex color",
     "border_color": "hex color",
     "border_width": size,
-    "font": "font name from main setting",
-    "text": "text to display",
+    "font": "font",
+    "text": "text",
     "text_color": "hex color",
-    "text_align": "text align", ## left, center, etc..
-    "disabled": "button state", ## takes 2 values True or False
-    "layer": layer starts from 1 to max_layering ## value defined in main setting
+    "text_align": "text align",
+    "disabled": 0,
+    "layer": 1
 }
 
-############## Frame BLUEPRINT ##############
+############## Input BLUEPRINT ##############
 "Name": {
-    "type": "FR",
-    "group": "name",
-    "size": [width, height], ## grid value
-    "pos": [x, y], ## grid balue
-    "grab": "grab point", ## ex: center, midbottom, etc..
-    "attObj": "attatched object", ## ex: player, bullet, etc..
-    "frame": "frame name", ## to move along the frame
-    "active_color": "hex color",
+    "type": "IN",
+    "group": "",
+    "size": [width, height],
+    "pos": [x, y],
+    "grab": "grab point",
+    "active_color": "#hex color",
     "border_color": "hex color",
     "border_width": size,
-    "font": "font name from main setting",
-    "text": "text to display",
-    "text_color": "hex color",
-    "text_align": "text align", ## left, center, etc..
-    "layer": layer starts from 1 to max_layering ## value defined in main setting
+    "disabled": 0,
+    "layer": 1
 }
+
+############## Progress Bar BLUEPRINT ##############
+"Name": {
+    "type": "PR",
+    "group": "name",
+    "size": width,
+    "pos": [x, y],
+    "grab": "grab point",
+    "bar_color": "hex color",
+    "bar_fill_color": "hex color",
+    "border_color": "hex color",
+    "border_width": size,
+    "font": "font",
+    "text": "text",
+    "text_color": "hex color",
+    "text_align": "text align",
+    "disabled": 1,
+    "layer": 1
+},
 
 ############## Slider BLUEPRINT ##############
 "Name": {
     "type": "SL",
     "group": "name",
-    "size": width, ## grid value
-    "pos": [x, y], ## grid balue
-    "grab": "grab point", ## ex: center, midbottom, etc..
-    "attObj": "attatched object", ## ex: player, bullet, etc..
-    "frame": "frame name", ## to move along the frame
+    "size": width,
+    "pos": [x, y],
+    "grab": "grab point",
     "bar_color": "hex color",
     "bar_fill_color": "hex color",
-    "handle_color": "hex color",
+    "handel_color": "hex color",
     "border_color": "hex color",
     "border_width": size,
-    "font": "font name from main setting",
-    "text": "text to display",
+    "font": "font",
+    "text": "text",
     "text_color": "hex color",
-    "text_align": "text align", ## left, center, etc..
-    "disabled": "button state", ## takes 2 values True or False
-    "layer": layer starts from 1 to max_layering ## value defined in main setting
+    "text_align": "text align",
+    "disabled": 1,
+    "layer": 1
 },
+
+############## Multi Area BLUEPRINT ##############
+"Name": {
+    "type": "SL",
+    "group": "name",
+    "size": width,
+    "pos": [x, y],
+    "grab": "grab point",
+    "line_height": 0,
+    "lines": 0,
+    "line_width": 0,
+    "disabled": 1,
+    "layer": 1
+},
+
 
 ############## Image BLUEPRINT ##############
 "Name": {
     "type": "IMG",
     "group": "name",
-    "url": "path to the given image",
-    "size": scale of the image default = 1,
-    "pos": [x, y], ## grid balue
-    "grab": "grab point", ## ex: center, midbottom, etc..
-    "attObj": "attatched object", ## ex: player, bullet, etc..
-    "frame": "frame name", ## to move along the frame
-    "border_color": "hex color",
-    "border_width": size,
-    "font": "font name from main setting",
-    "text": "text to display",
+    "url": "image name",
+    "scale": 1,
+    "pos": [x, y],
+    "grab": "grab point",
+    "font": "font",
+    "text": "text",
     "text_color": "hex color",
-    "text_align": "text align", ## left, center, etc..
-    "layer": layer starts from 1 to max_layering ## value defined in main setting
+    "text_align": "text align",
+    "layer": 1
 }
 ############## Image Button BLUEPRINT ##############
 "Name": {
     "type": "IBT",
     "group": "name",
-    "urls": ["list of 4 images, normal, hover, select, disabled, in this order"],
-    "size": 1,
-    "pos": [x, y], ## grid balue
-    "grab": "grab point", ## ex: center, midbottom, etc..
-    "attObj": "attatched object", ## ex: player, bullet, etc..
-    "frame": "frame name", ## to move along the frame
-    "border_color": "hex color",
-    "border_width": size,
-    "font": "font name from main setting",
-    "text": "text to display",
+    "urls": {"normal": "", "hover": "", "select": "", "disabled": ""},
+    "scale": 1,
+    "pos": [x, y],
+    "grab": "grab point",
+    "font": "font",
+    "text": "text",
     "text_color": "hex color",
-    "text_align": "text align", ## left, center, etc..
-    "layer": layer starts from 1 to max_layering ## value defined in main setting
+    "text_align": "text align",
+    "disabled": 1,
+    "layer": 1
 }
+
+############## Image Input BLUEPRINT ##############
+"Name": {
+    "type": "IIN",
+    "group": "name",
+    "urls": {"border": "", "foucs": "", "feild": ""},
+    "scale": 1,
+    "pos": [x, y],
+    "grab": "grab point",
+    "disabled": 1,
+    "layer": 1
+}
+
+############## Image Progress Bar BLUEPRINT ##############
+"Name": {
+    "type": "IPR",
+    "group": "name",
+    "urls": {"bar": "", "fill": ""},
+    "scale": 1,
+    "pos": [x, y],
+    "grab": "grab point",
+    "font": "font",
+    "text": "text",
+    "text_color": "hex color",
+    "text_align": "text align",
+    "layer": 1
+}
+
+############## Image Slider BLUEPRINT ##############
+"Name": {
+    "type": "ISL",
+    "group": "name",
+    "urls": {"bar": "", "fill": "", "handle": "", "hover": "", "select": ""},
+    "scale": 1,
+    "pos": [x, y],
+    "grab": "grab point",
+    "font": "font",
+    "text": "text",
+    "text_color": "hex color",
+    "text_align": "text align",
+    "layer": 1
+}
+
 ############################ OTHER BLUE PRINTS ############################
 ############## Map Data BLUEPRINT ##############
 "Name": {
