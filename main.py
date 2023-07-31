@@ -28,6 +28,8 @@ from repeatedFuns import *
 #### Once Packges ####
 
 ################### Game Init ###################
+Drawer.PyImageBase.loadImages("Sprites/Images")
+
 main_json = dataHandler.readJson("GameSavedData\\mainSetting.txt")
 start_ui_json = dataHandler.readJson("GameSavedData\\StartStaticUi.txt")
 game_ui_json = dataHandler.readJson("GameSavedData\\GameStaticUi.txt")
@@ -47,6 +49,7 @@ sounds_list.append(hover_sound)
 sounds_list.append(select_sound)
 sounds_list.append(disabled_sound)
 
+################### Game Varibales ###################
 AUTOSAVE = pygame.USEREVENT + 1
 pygame.time.set_timer(AUTOSAVE, 1000)
 
@@ -56,7 +59,7 @@ if main_json["playerName"]:
     Drawer.excluded_dict["game_state"] = 1
 
 mon_max_hp, mon_name = resetBattle("startVillege", Map, main_json)
-################### Game Varibales ###################
+
 attack_timer = timeControl.Timer(1000)
 attack_timer.startTimer()
 regen_timer = timeControl.Timer(2500)
