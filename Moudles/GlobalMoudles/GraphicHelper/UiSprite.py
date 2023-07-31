@@ -10,28 +10,28 @@ class PyImageBase(PygameBase):
         super().__init__(group, name, ui_prifix)
 
 
-    # @staticmethod
-    # def loadImages(path):
-    #     images = os.listdir(path)
+    @staticmethod
+    def loadImages(path):
+        images = os.listdir(path)
 
-    #     for image in images:
-    #         if image.find(".jpg") != -1:
-    #             loaded_image = pygame.image.load(image).convert()
-    #             image_name = image[:-4]
-    #             PyImageBase.image_list.update({image_name: loaded_image})
-    #         elif image.find(".png") != -1:
-    #             loaded_image = pygame.image.load(image).convert_alpha()
-    #             image_name = image[:-4]
-    #             PyImageBase.image_list.update({image_name: loaded_image})
-    #         else:
-    #             raise TypeError("Engine only support 2 types (jpg, png)")
+        for image in images:
+            if image.find(".jpg") != -1:
+                loaded_image = pygame.image.load(f"{path}/{image}").convert()
+                image_name = image[:-4]
+                PyImageBase.image_list.update({image_name: loaded_image})
+            elif image.find(".png") != -1:
+                loaded_image = pygame.image.load(f"{path}/{image}").convert_alpha()
+                image_name = image[:-4]
+                PyImageBase.image_list.update({image_name: loaded_image})
+            else:
+                raise TypeError("Engine only support 2 types (jpg, png)")
 
 
 class PyImage(PyImageBase):
     def __init__(self, group, name, url, pos, grab="", scale=1):
         super().__init__(group, name, "IMG")
 
-        self.image = pygame.image.load(url).convert_alpha()
+        self.image = PyImageBase.image_list[url]
 
         self.image = pygame.transform.scale(self.image, (width_ratio * self.image.get_width(), height_ratio * self.image.get_height()))
         self.image = pygame.transform.rotozoom(self.image, 0, scale)
@@ -45,10 +45,10 @@ class PyIButton(PygameBase):
     def __init__(self, group, name, urls, pos, grab="", scale=1):
         super().__init__(group, name, "IBT")
 
-        self.image = pygame.image.load(urls[0]).convert_alpha()
-        self.hover_image = pygame.image.load(urls[1]).convert_alpha()
-        self.select_image = pygame.image.load(urls[2]).convert_alpha()
-        self.disabled_image = pygame.image.load(urls[3]).convert_alpha()
+        self.image = PyImageBase.image_list[urls["normal"]]
+        self.hover_image = PyImageBase.image_list[urls["hover"]]
+        self.select_image = PyImageBase.image_list[urls["select"]]
+        self.disabled_image = PyImageBase.image_list[urls["disabled"]]
 
         self.image = pygame.transform.scale(self.image, (width_ratio * self.image.get_width(), height_ratio * self.image.get_height()))
         self.hover_image = pygame.transform.scale(self.hover_image, (width_ratio * self.hover_image.get_width(), height_ratio * self.hover_image.get_height()))
@@ -74,9 +74,9 @@ class PyIInput(PygameBase):
     def __init__(self, group, name, urls, pos, grab="", scale=1):
         super().__init__(group, name, "IIN")
 
-        self.border_image = pygame.image.load(urls["border"]).convert_alpha()
-        self.focus_image = pygame.image.load(urls["focus"]).convert_alpha()
-        self.field_image = pygame.image.load(urls["field"]).convert_alpha()
+        self.border_image = PyImageBase.image_list[urls["border"]]
+        self.focus_image = PyImageBase.image_list[urls["focus"]]
+        self.field_image = PyImageBase.image_list[urls["field"]]
 
         self.border_image = pygame.transform.scale(self.border_image, (width_ratio * self.border_image.get_width(), height_ratio * self.border_image.get_height()))
         self.focus_image = pygame.transform.scale(self.focus_image, (width_ratio * self.focus_image.get_width(), height_ratio * self.focus_image.get_height()))
@@ -99,8 +99,8 @@ class PyIProgress(PygameBase):
     def __init__(self, group, name, urls, pos, grab="", scale=1, ui_prifix="IPR"):
         super().__init__(group, name, ui_prifix)
 
-        self.bar_image = pygame.image.load(urls["bar"]).convert_alpha()
-        self.fill_image = pygame.image.load(urls["fill"]).convert_alpha()
+        self.bar_image = PyImageBase.image_list[urls["bar"]]
+        self.fill_image = PyImageBase.image_list[urls["fill"]]
 
         self.bar_image = pygame.transform.scale(self.bar_image, (width_ratio * self.bar_image.get_width(), height_ratio * self.bar_image.get_height()))
         self.fill_image = pygame.transform.scale(self.fill_image, (width_ratio * self.fill_image.get_width(), height_ratio * self.fill_image.get_height()))
@@ -130,9 +130,9 @@ class PyISlider(PyIProgress):
     def __init__(self, group, name, urls, pos, grab="", scale=1):
         super().__init__(group, name, urls, pos, grab, scale, "ISL")
 
-        self.handle_image = pygame.image.load(urls["handle"]).convert_alpha()
-        self.handle_hover_image = pygame.image.load(urls["hover"]).convert_alpha()
-        self.handle_select_image = pygame.image.load(urls["select"]).convert_alpha()
+        self.handle_image = PyImageBase.image_list[urls["handle"]]
+        self.handle_hover_image = PyImageBase.image_list[urls["hover"]]
+        self.handle_select_image = PyImageBase.image_list[urls["select"]]
 
         self.handle_image = pygame.transform.scale(self.handle_image, (width_ratio * self.handle_image.get_width(), height_ratio * self.handle_image.get_height()))
         self.handle_hover_image = pygame.transform.scale(self.handle_hover_image, (width_ratio * self.handle_hover_image.get_width(), height_ratio * self.handle_hover_image.get_height()))
