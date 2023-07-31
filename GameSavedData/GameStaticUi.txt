@@ -2,7 +2,7 @@
     "background": {
         "type": "IMG",
         "group": "gameplay",
-        "url": "Sprites/Images/background.png",
+        "url": "background",
         "scale": 1,
         "pos": [0, 0],
         "grab": "",
@@ -15,7 +15,7 @@
     "vertLine1": {
         "type": "IMG",
         "group": "gameplay",
-        "url": "Sprites/Images/vertLine.png",
+        "url": "vertLine",
         "scale": 1,
         "pos": [4, 0],
         "grab": "",
@@ -28,7 +28,7 @@
     "vertLine2": {
         "type": "IMG",
         "group": "gameplay",
-        "url": "Sprites/Images/vertLine.png",
+        "url": "vertLine",
         "scale": 1,
         "pos": [19, 0],
         "grab": "",
@@ -42,8 +42,7 @@
     "statsBt": {
         "type": "IBT",
         "group": "gameplay",
-        "urls": ["Sprites/Images/button_normal.png", "Sprites/Images/button_hover.png",
-                "Sprites/Images/button_select.png", "Sprites/Images/button_disabled.png"],
+        "urls": {"normal": "button_normal", "hover": "button_hover", "select": "button_select", "disabled": "button_disabled"},
         "scale": 1,
         "pos": [1, 1],
         "grab": "",
@@ -56,8 +55,7 @@
     "mapsBt": {
         "type": "IBT",
         "group": "gameplay",
-        "urls": ["Sprites/Images/button_normal.png", "Sprites/Images/button_hover.png",
-                "Sprites/Images/button_select.png", "Sprites/Images/button_disabled.png"],
+        "urls": {"normal": "button_normal", "hover": "button_hover", "select": "button_select", "disabled": "button_disabled"},
         "scale": 1,
         "pos": [1, 4],
         "grab": "",
@@ -70,8 +68,7 @@
     "bossesBt": {
         "type": "IBT",
         "group": "gameplay",
-        "urls": ["Sprites/Images/button_normal.png", "Sprites/Images/button_hover.png",
-                "Sprites/Images/button_select.png", "Sprites/Images/button_disabled.png"],
+        "urls": {"normal": "button_normal", "hover": "button_hover", "select": "button_select", "disabled": "button_disabled"},
         "scale": 1,
         "pos": [1, 7],
         "grab": "",
@@ -84,8 +81,7 @@
     "settingBt": {
         "type": "IBT",
         "group": "gameplay",
-        "urls": ["Sprites/Images/button_normal.png", "Sprites/Images/button_hover.png",
-                "Sprites/Images/button_select.png", "Sprites/Images/button_disabled.png"],
+        "urls": {"normal": "button_normal", "hover": "button_hover", "select": "button_select", "disabled": "button_disabled"},
         "scale": 1,
         "pos": [1, 10],
         "grab": "",
@@ -98,8 +94,7 @@
     "exitBt": {
         "type": "IBT",
         "group": "gameplay",
-        "urls": ["Sprites/Images/buttonD_normal.png", "Sprites/Images/buttonD_hover.png",
-                "Sprites/Images/buttonD_select.png", "Sprites/Images/buttonD_disabled.png"],
+        "urls": {"normal": "buttonD_normal", "hover": "buttonD_hover", "select": "buttonD_select", "disabled": "buttonD_disabled"},
         "scale": 0.8,
         "pos": [1, 16],
         "grab": "",
@@ -112,7 +107,7 @@
     "healthBar": {
         "type": "IPR",
         "group": "gameplay",
-        "urls": {"bar": "Sprites/Images/bar.png", "fill": "Sprites/Images/healthFill.png"},
+        "urls": {"bar": "bar", "fill": "healthFill"},
         "scale": 1,
         "pos": [20, 16],
         "grab": "",
@@ -125,7 +120,7 @@
     "xpBar": {
         "type": "IPR",
         "group": "gameplay",
-        "urls": {"bar": "Sprites/Images/bar.png", "fill": "Sprites/Images/xpFill.png"},
+        "urls": {"bar": "bar", "fill": "xpFill"},
         "scale": 1,
         "pos": [20, 17],
         "grab": "",
@@ -138,7 +133,7 @@
     "monsterHphBar": {
         "type": "IPR",
         "group": "gameplay",
-        "urls": {"bar": "Sprites/Images/bar.png", "fill": "Sprites/Images/healthFill.png"},
+        "urls": {"bar": "bar", "fill": "healthFill"},
         "scale": 1,
         "pos": [20, 0],
         "grab": "",
@@ -261,8 +256,8 @@
     "bgm": {
         "type": "ISL",
         "group": "settingMenu",
-        "urls": {"bar": "Sprites/Images/sliderBar.png", "fill": "Sprites/Images/sliderFill.png",
-                "handle": "Sprites/Images/handle.png", "hover": "Sprites/Images/handle_hover.png", "select": "Sprites/Images/handle_select.png"},
+        "urls": {"bar": "sliderBar", "fill": "sliderFill",
+                "handle": "handle", "hover": "handle_hover", "select": "handle_select"},
         "scale": 1,
         "pos": [6, 4],
         "grab": "",
@@ -275,8 +270,8 @@
     "sfx": {
         "type": "ISL",
         "group": "settingMenu",
-        "urls": {"bar": "Sprites/Images/sliderBar.png", "fill": "Sprites/Images/sliderFill.png",
-                "handle": "Sprites/Images/handle.png", "hover": "Sprites/Images/handle_hover.png", "select": "Sprites/Images/handle_select.png"},
+        "urls": {"bar": "sliderBar", "fill": "sliderFill",
+                "handle": "handle", "hover": "handle_hover", "select": "handle_select"},
         "scale": 1,
         "pos": [6, 7],
         "grab": "",
@@ -289,8 +284,7 @@
     "saveBt": {
         "type": "IBT",
         "group": "settingMenu",
-        "urls": ["Sprites/Images/button_normal.png", "Sprites/Images/button_hover.png",
-                "Sprites/Images/button_select.png", "Sprites/Images/button_disabled.png"],
+        "urls": {"normal": "button_normal", "hover": "button_hover", "select": "button_select", "disabled": "button_disabled"},
         "scale": 0.8,
         "pos": [6, 15],
         "grab": "",
@@ -304,8 +298,7 @@
     "eraseBt": {
         "type": "IBT",
         "group": "settingMenu",
-        "urls": ["Sprites/Images/buttonD_normal.png", "Sprites/Images/buttonD_hover.png",
-                "Sprites/Images/buttonD_select.png", "Sprites/Images/buttonD_disabled.png"],
+        "urls": {"normal": "buttonD_normal", "hover": "buttonD_hover", "select": "buttonD_select", "disabled": "buttonD_disabled"},
         "scale": 0.8,
         "pos": [16, 15],
         "grab": "",
@@ -462,8 +455,7 @@
     "strIncBt": {
         "type": "IBT",
         "group": "statsMenu",
-        "urls": ["Sprites/Images/sm_button.png", "Sprites/Images/sm_button_hover.png",
-                "Sprites/Images/sm_button_select.png", "Sprites/Images/sm_button_disabled.png"],
+        "urls": {"normal": "sm_button", "hover": "sm_button_hover", "select": "sm_button_select", "disabled": "sm_button_disabled"},
         "scale": 0.6,
         "pos": [8, 6],
         "grab": "",
@@ -530,8 +522,7 @@
     "vitIncBt": {
         "type": "IBT",
         "group": "statsMenu",
-        "urls": ["Sprites/Images/sm_button.png", "Sprites/Images/sm_button_hover.png",
-                "Sprites/Images/sm_button_select.png", "Sprites/Images/sm_button_disabled.png"],
+        "urls": {"normal": "sm_button", "hover": "sm_button_hover", "select": "sm_button_select", "disabled": "sm_button_disabled"},
         "scale": 0.6,
         "pos": [12, 6],
         "grab": "",
@@ -544,8 +535,7 @@
     "map1Bt": {
         "type": "IBT",
         "group": "mapMenu",
-        "urls": ["Sprites/Images/map_1.png", "Sprites/Images/map_1_hover.png",
-                "Sprites/Images/map_1_select.png", "Sprites/Images/map_disabled.png"],
+        "urls": {"normal": "map_1", "hover": "map_1_hover", "select": "map_1_select", "disabled": "map_disabled"},
         "scale": 1,
         "pos": [6, 4],
         "grab": "",
@@ -558,8 +548,7 @@
     "map2Bt": {
         "type": "IBT",
         "group": "mapMenu",
-        "urls": ["Sprites/Images/map_2.png", "Sprites/Images/map_2_hover.png",
-                "Sprites/Images/map_2_select.png", "Sprites/Images/map_disabled.png"],
+        "urls": {"normal": "map_2", "hover": "map_2_hover", "select": "map_2_select", "disabled": "map_disabled"},
         "scale": 1,
         "pos": [13, 4],
         "grab": "",
@@ -572,8 +561,7 @@
     "map3Bt": {
         "type": "IBT",
         "group": "mapMenu",
-        "urls": ["Sprites/Images/map_1.png", "Sprites/Images/map_1_hover.png",
-                "Sprites/Images/map_1_select.png", "Sprites/Images/map_disabled.png"],
+        "urls": {"normal": "map_1", "hover": "map_1_hover", "select": "map_1_select", "disabled": "map_disabled"},
         "scale": 1,
         "pos": [6, 7],
         "grab": "",
@@ -586,8 +574,7 @@
     "map4Bt": {
         "type": "IBT",
         "group": "mapMenu",
-        "urls": ["Sprites/Images/map_4.png", "Sprites/Images/map_4_hover.png",
-                "Sprites/Images/map_4_select.png", "Sprites/Images/map_disabled.png"],
+        "urls": {"normal": "map_4", "hover": "map_4_hover", "select": "map_4_select", "disabled": "map_disabled"},
         "scale": 1,
         "pos": [13, 7],
         "grab": "",
@@ -600,8 +587,7 @@
     "map5Bt": {
         "type": "IBT",
         "group": "mapMenu",
-        "urls": ["Sprites/Images/map_5.png", "Sprites/Images/map_5_hover.png",
-                "Sprites/Images/map_5_select.png", "Sprites/Images/map_disabled.png"],
+        "urls": {"normal": "map_5", "hover": "map_5_hover", "select": "map_5_select", "disabled": "map_disabled"},
         "scale": 1,
         "pos": [6, 10],
         "grab": "",
@@ -614,8 +600,7 @@
     "map6Bt": {
         "type": "IBT",
         "group": "mapMenu",
-        "urls": ["Sprites/Images/map_6.png", "Sprites/Images/map_6_hover.png",
-                "Sprites/Images/map_6_select.png", "Sprites/Images/map_disabled.png"],
+        "urls": {"normal": "map_6", "hover": "map_6_hover", "select": "map_6_select", "disabled": "map_disabled"},
         "scale": 1,
         "pos": [13, 10],
         "grab": "",
@@ -628,8 +613,7 @@
     "map7Bt": {
         "type": "IBT",
         "group": "mapMenu",
-        "urls": ["Sprites/Images/map_7.png", "Sprites/Images/map_7_hover.png",
-                "Sprites/Images/map_7_select.png", "Sprites/Images/map_disabled.png"],
+        "urls": {"normal": "map_7", "hover": "map_7_hover", "select": "map_7_select", "disabled": "map_disabled"},
         "scale": 1,
         "pos": [6, 13],
         "grab": "",
@@ -642,8 +626,7 @@
     "map8Bt": {
         "type": "IBT",
         "group": "mapMenu",
-        "urls": ["Sprites/Images/map_8.png", "Sprites/Images/map_8_hover.png",
-                "Sprites/Images/map_8_select.png", "Sprites/Images/map_disabled.png"],
+        "urls": {"normal": "map_8", "hover": "map_8_hover", "select": "map_8_select", "disabled": "map_disabled"},
         "scale": 1,
         "pos": [13, 13],
         "grab": "",
@@ -656,8 +639,7 @@
     "boss1Bt": {
         "type": "IBT",
         "group": "bossMenu",
-        "urls": ["Sprites/Images/map_2.png", "Sprites/Images/map_2_hover.png",
-                "Sprites/Images/map_2_select.png", "Sprites/Images/map_disabled.png"],
+        "urls": {"normal": "map_2", "hover": "map_2_hover", "select": "map_2_select", "disabled": "map_disabled"},
         "scale": 1,
         "pos": [6, 4],
         "grab": "",
@@ -670,8 +652,7 @@
     "boss2Bt": {
         "type": "IBT",
         "group": "bossMenu",
-        "urls": ["Sprites/Images/map_4.png", "Sprites/Images/map_4_hover.png",
-                "Sprites/Images/map_4_select.png", "Sprites/Images/map_disabled.png"],
+        "urls": {"normal": "map_4", "hover": "map_4_hover", "select": "map_4_select", "disabled": "map_disabled"},
         "scale": 1,
         "pos": [13, 4],
         "grab": "",
@@ -684,8 +665,7 @@
     "boss3Bt": {
         "type": "IBT",
         "group": "bossMenu",
-        "urls": ["Sprites/Images/map_5.png", "Sprites/Images/map_5_hover.png",
-                "Sprites/Images/map_5_select.png", "Sprites/Images/map_disabled.png"],
+        "urls": {"normal": "map_5", "hover": "map_5_hover", "select": "map_5_select", "disabled": "map_disabled"},
         "scale": 1,
         "pos": [6, 7],
         "grab": "",
@@ -698,8 +678,7 @@
     "boss4Bt": {
         "type": "IBT",
         "group": "bossMenu",
-        "urls": ["Sprites/Images/map_8.png", "Sprites/Images/map_8_hover.png",
-                "Sprites/Images/map_8_select.png", "Sprites/Images/map_disabled.png"],
+        "urls": {"normal": "map_8", "hover": "map_8_hover", "select": "map_8_select", "disabled": "map_disabled"},
         "scale": 1,
         "pos": [13, 7],
         "grab": "",

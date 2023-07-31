@@ -2,7 +2,7 @@
     "background": {
         "type": "IMG",
         "group": "start",
-        "url": "Sprites/Images/start_background.png",
+        "url": "start_background",
         "scale": 1,
         "pos": [0, 0],
         "grab": "",
@@ -16,8 +16,7 @@
     "startBt": {
         "type": "IBT",
         "group": "start",
-        "urls": ["Sprites/Images/button_normal.png", "Sprites/Images/button_hover.png",
-                "Sprites/Images/button_select.png", "Sprites/Images/button_disabled.png"],
+        "urls": {"normal": "button_normal", "hover": "button_hover", "select": "button_select", "disabled": "button_disabled"},
         "scale": 0.8,
         "pos": [15, 9],
         "grab": "",
@@ -48,7 +47,7 @@
     "playerNameIin": {
         "type": "IIN",
         "group": "start",
-        "urls": {"border": "Sprites/Images/input.png", "focus": "Sprites/Images/input_focus.png", "field": "Sprites/Images/field.png"},
+        "urls": {"border": "input", "focus": "input_focus", "field": "field"},
         "scale": 1,
         "pos": [12, 7],
         "grab": "",

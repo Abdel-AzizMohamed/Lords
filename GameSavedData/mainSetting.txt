@@ -6,7 +6,7 @@
   "playerStats": 0,
   "str": 161,
   "vit": 99,
-  "xp": 26982,
+  "xp": 27868,
   "boss1": 1,
   "boss2": 1,
   "boss3": 0,
